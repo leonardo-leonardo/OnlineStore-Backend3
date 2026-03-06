@@ -130,14 +130,14 @@ function loadCart() {
 }
 
 // ---------------- NEW Backend Integration ----------------
-const API_URL = "https://onlinestore-backend-6w1q.onrender.com"; // ✅ deployed backend
+const API_URL = "https://your-vercel-project.vercel.app"; // ✅ replace with your Vercel domain
 
 async function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     try {
-        const res = await fetch(`${API_URL}/register`, {
+        const res = await fetch(`${API_URL}/api/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -161,7 +161,7 @@ async function login() {
     const password = document.getElementById("password").value;
 
     try {
-        const res = await fetch(`${API_URL}/login`, {
+        const res = await fetch(`${API_URL}/api/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -186,7 +186,7 @@ async function saveCartToServer() {
     const token = localStorage.getItem("token");
     if (!token) return; // only save if logged in
 
-    await fetch(`${API_URL}/cart`, {
+    await fetch(`${API_URL}/api/cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, cart })
@@ -197,7 +197,7 @@ async function loadCartFromServer() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const res = await fetch(`${API_URL}/cart`, {
+    const res = await fetch(`${API_URL}/api/cart`, {
         method: "GET",
         headers: { "Authorization": "Bearer " + token }
     });
