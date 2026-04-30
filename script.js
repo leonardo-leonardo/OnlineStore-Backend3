@@ -1,40 +1,21 @@
-// ---------------- Existing Store Code ----------------
+// ================= EMAILJS INIT =================
+(function () {
+    emailjs.init("YOUR_PUBLIC_KEY"); 
+})();
+
+// ================= PRODUCTS =================
 const items = [
-    {
-        name: "Flappy Bird Game",
-        price: 5,
-        category: "games",
-        img: "https://th.bing.com/th/id/R.567e72625ae82468e5116ce92dc24bde?rik=kqrAxxOrUhrXPg&riu=http%3a%2f%2fassets1.ignimgs.com%2f2014%2f01%2f31%2fflappy-bird-buttonjpg-e984c2.jpg&ehk=vGlEeny7R2EyaMcNMlj4nt4YJPLB2BBtN8wG2799dWE%3d&risl=&pid=ImgRaw&r=0"
-    },
-    {
-        name: "Optimizing your laptop — Better Performance (Windows OS)",
-        price: 100,
-        category: "optimizing",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
-    },
-    {
-        name: "Optimizing your laptop — Less Storage Usage (Windows OS)",
-        price: 100,
-        category: "optimizing",
-        img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg"
-    },
-    {
-        name: "Optimizing your laptop — Power Saving (Windows OS)",
-        price: 50,
-        category: "optimizing",
-        img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg"
-    },
-    {
-        name: "Making your laptop look like Windows 7 Glass",
-        price: 50,
-        category: "optimizing",
-        img: "https://th.bing.com/th/id/R.789b18edc63f0c18038059b8846c9463?rik=uQ09gFWQLsp00w&riu=http%3a%2f%2fcdn.redmondpie.com%2fwp-content%2fuploads%2f2009%2f10%2fTheLaunchofWindow7AnotherMilestoneAccomp_DE09%2fD1a.png&ehk=z9Q7p4u6NcB2T47PvSsMPp8wVzjh1%2bgbH91u9IwyE1Y%3d&risl=&pid=ImgRaw&r=0"
-    }
+    { name: "Flappy Bird Game", price: 5, category: "games", img: "https://th.bing.com/th/id/R.567e72625ae82468e5116ce92dc24bde?rik=kqrAxxOrUhrXPg&riu=http%3a%2f%2fassets1.ignimgs.com%2f2014%2f01%2f31%2fflappy-bird-buttonjpg-e984c2.jpg" },
+    { name: "Laptop Optimizing", price: 100, category: "optimizing", img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg" },
+    { name: "Storage Optimization", price: 100, category: "optimizing", img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg" },
+    { name: "Power Saving Mode", price: 50, category: "optimizing", img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg" }
 ];
 
+// ================= CART =================
 let cart = [];
 let total = 0;
 
+// ================= RENDER ITEMS =================
 function renderItems() {
     const container = document.getElementById("itemsContainer");
     container.innerHTML = "";
@@ -43,27 +24,31 @@ function renderItems() {
     const category = document.getElementById("categorySelect").value;
 
     items
-        .filter(item =>
-            (category === "all" || item.category === category) &&
-            item.name.toLowerCase().includes(search)
+        .filter(i =>
+            (category === "all" || i.category === category) &&
+            i.name.toLowerCase().includes(search)
         )
         .forEach(item => {
             container.innerHTML += `
                 <div class="item">
                     <img src="${item.img}">
                     <h3>${item.name}</h3>
-                    <p>Price: NT$${item.price}</p>
-                    Quantity: 
-                    <input type="number" id="qty-${item.name}" value="1" min="1" style="width:50px;">
-                    <br><br>
-                    <button onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+                    <p>NT$${item.price}</p>
+
+                    <input type="number" id="qty-${item.name}" value="1" min="1">
+
+                    <button onclick="addToCart('${item.name}', ${item.price})">
+                        Add to Cart
+                    </button>
                 </div>
             `;
         });
 }
 
+// ================= CART FUNCTIONS =================
 function addToCart(name, price) {
     const qty = parseInt(document.getElementById("qty-" + name).value);
+
     const existing = cart.find(i => i.name === name);
 
     if (existing) {
@@ -73,143 +58,127 @@ function addToCart(name, price) {
     }
 
     total += price * qty;
+
     document.getElementById("dingSound").play();
+
     renderCart();
     saveCart();
-    saveCartToServer(); // 🔗 also save to backend if logged in
 }
 
+// ================= CART UI =================
 function renderCart() {
     const list = document.getElementById("cartList");
     list.innerHTML = "";
 
-    cart.forEach((item, index) => {
+    cart.forEach((item, i) => {
         list.innerHTML += `
-            <li>${item.name} – NT$${item.price} × ${item.qty}
-                <button onclick="removeItem(${index})">❌</button>
-            </li>`;
+            <li>
+                ${item.name} × ${item.qty} = NT$${item.price * item.qty}
+                <button onclick="removeItem(${i})">❌</button>
+            </li>
+        `;
     });
 
     document.getElementById("total").innerText = total;
+
     document.getElementById("paymentRule").innerText =
-        total >= 500 ? "Cash Before Delivery(Pay to Leonardo in LTBrown)" : "Cash Only(Pay to Leonardo in LTBrown)";
+        total >= 500 ? "Cash Before Delivery" : "Cash Only";
 }
 
+// ================= REMOVE =================
 function removeItem(i) {
     total -= cart[i].price * cart[i].qty;
     cart.splice(i, 1);
     renderCart();
     saveCart();
-    saveCartToServer(); // 🔗 also update backend
 }
 
-function checkout() {
-    if (cart.length === 0) {
-        alert("Cart is empty!");
-        return;
-    }
-
-    const order = cart.map(i => `${i.name} × ${i.qty} - NT$${i.price * i.qty}`).join("%0A");
-    const payment = total >= 500 ? "Cash Before Delivery(Pay to Leonardo in LTBrown)" : "Cash Only(Pay to Leonardo in LTBrown)";
-
-    window.location.href =
-        `mailto:leofoooo132@gmail.com?subject=New Order&body=Order:%0A${order}%0A%0ATotal: NT$${total}%0APayment: ${payment}`;
-}
-
+// ================= SAVE =================
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("total", total);
 }
 
 function loadCart() {
-    const savedCart = localStorage.getItem("cart");
+    const saved = localStorage.getItem("cart");
     const savedTotal = localStorage.getItem("total");
-    if (savedCart) cart = JSON.parse(savedCart);
+
+    if (saved) cart = JSON.parse(saved);
     if (savedTotal) total = parseInt(savedTotal);
+
     renderCart();
 }
 
-// ---------------- NEW Backend Integration ----------------
-const API_URL = "https://your-vercel-project.vercel.app"; // ✅ replace with your Vercel domain
+// ================= EMAILJS CHECKOUT =================
+function checkout() {
+    if (cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+    }
+
+    const name = prompt("Enter your name");
+    if (!name) return;
+
+    const order = cart
+        .map(i => `${i.name} × ${i.qty} = NT$${i.price * i.qty}`)
+        .join("\n");
+
+    emailjs.send("service_nb7uhuv", "template_2upy0gm", {
+        name: name,
+        product: order,
+        price: total
+    })
+    .then(() => {
+        alert("✅ Order sent!");
+
+        cart = [];
+        total = 0;
+
+        saveCart();
+        renderCart();
+    })
+    .catch(err => {
+        console.log(err);
+        alert("❌ Failed to send order");
+    });
+}
+
+// ================= AUTH (basic backend calls kept) =================
+const API_URL = "https://your-backend-url.com";
 
 async function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    try {
-        const res = await fetch(`${API_URL}/api/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
+    await fetch(`${API_URL}/api/register`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ username, password })
+    });
 
-        const data = await res.json();
-        if (data.message) {
-            alert("🎉 Register successful! Welcome, " + username + "!");
-            document.getElementById("authMessage").innerText = data.message;
-        } else {
-            alert("⚠️ " + data.error);
-            document.getElementById("authMessage").innerText = data.error;
-        }
-    } catch (err) {
-        alert("⚠️ Error connecting to server.");
-    }
+    alert("Registered!");
 }
 
 async function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    try {
-        const res = await fetch(`${API_URL}/api/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await res.json();
-        if (data.token) {
-            localStorage.setItem("token", data.token);
-            alert("✅ Login successful! Welcome back, " + username + ".");
-            document.getElementById("authMessage").innerText = "Logged in!";
-            loadCartFromServer();
-        } else {
-            alert("⚠️ " + data.error);
-            document.getElementById("authMessage").innerText = data.error;
-        }
-    } catch (err) {
-        alert("⚠️ Error connecting to server.");
-    }
-}
-
-async function saveCartToServer() {
-    const token = localStorage.getItem("token");
-    if (!token) return; // only save if logged in
-
-    await fetch(`${API_URL}/api/cart`, {
+    const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, cart })
-    });
-}
-
-async function loadCartFromServer() {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    const res = await fetch(`${API_URL}/api/cart`, {
-        method: "GET",
-        headers: { "Authorization": "Bearer " + token }
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ username, password })
     });
 
     const data = await res.json();
-    if (data.cart) {
-        cart = data.cart;
-        total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-        renderCart();
+
+    if (data.token) {
+        localStorage.setItem("token", data.token);
+        alert("Login success");
+    } else {
+        alert("Login failed");
     }
 }
 
-// ---------------- Init ----------------
+// ================= INIT =================
 loadCart();
 renderItems();
