@@ -6,9 +6,9 @@
 // ================= PRODUCTS =================
 const items = [
     { name: "Flappy Bird Game", price: 5, category: "games", img: "https://th.bing.com/th/id/R.567e72625ae82468e5116ce92dc24bde?rik=kqrAxxOrUhrXPg&riu=http%3a%2f%2fassets1.ignimgs.com%2f2014%2f01%2f31%2fflappy-bird-buttonjpg-e984c2.jpg&ehk=vGlEeny7R2EyaMcNMlj4nt4YJPLB2BBtN8wG2799dWE%3d&risl=&pid=ImgRaw&r=0" },
-    { name: "Laptop Optimizing", price: 100, category: "optimizing", img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg" },
-    { name: "Storage Optimization", price: 100, category: "optimizing", img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg" },
-    { name: "Power Saving Mode", price: 50, category: "optimizing", img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg" }
+    { name: "Make your laptop better performance", price: 100, category: "optimizing", img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg" },
+    { name: "Make your laptop use less storage", price: 100, category: "optimizing", img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg" },
+    { name: "Make your laptop best efficiency", price: 50, category: "optimizing", img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg" }
 ];
 
 // ================= CART =================
