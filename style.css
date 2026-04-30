@@ -1,4 +1,3 @@
-/* --- existing code (unchanged) --- */
 body {
     font-family: Segoe UI, Arial;
     background: linear-gradient(#2a69d0, #1a4c9c);
@@ -6,6 +5,8 @@ body {
     padding: 0;
     color: #fff;
 }
+
+/* GLASS */
 .glass {
     backdrop-filter: blur(12px);
     background: rgba(255,255,255,0.18);
@@ -15,19 +16,22 @@ body {
     color: #000;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
+
+/* INPUTS */
 #searchBar {
     width: 300px;
     padding: 10px;
     border-radius: 20px;
     border: none;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
 }
+
 select {
     padding: 10px;
     border-radius: 8px;
     border: none;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
 }
+
+/* PRODUCTS */
 .item {
     width: 260px;
     background: rgba(255,255,255,0.25);
@@ -35,34 +39,35 @@ select {
     padding: 12px;
     margin: 15px;
     display: inline-block;
-    vertical-align: top;
     color: #000;
-    backdrop-filter: blur(10px);
     transition: 0.2s;
 }
+
 .item:hover {
     transform: scale(1.05);
 }
+
 .item img {
     width: 240px;
     height: 180px;
     object-fit: contain;
-    border-radius: 8px;
 }
+
+/* BUTTONS */
 button {
     padding: 8px 12px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     background: linear-gradient(#e8f0ff, #b8ccf0);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 6px rgba(255,255,255,0.6);
+    font-weight: bold;
 }
+
 button:hover {
-    background: linear-gradient(#ffffff, #d0e0ff);
+    transform: scale(1.03);
 }
-#cart {
-    margin-top: 20px;
-}
+
+/* TASKBAR */
 #taskbar {
     position: fixed;
     bottom: 0;
@@ -73,27 +78,9 @@ button:hover {
     display: flex;
     justify-content: center;
     color: #fff;
-    font-size: 18px;
 }
 
-/* --- new styles for login/register --- */
-input[type="text"],
-input[type="password"] {
-    width: 250px;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 8px;
-    border: none;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
-    font-family: Segoe UI, Arial;
-}
-
-#authMessage {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #222; /* darker text inside glass */
-}
-/* Login box styling */
+/* LOGIN */
 .login-box {
     max-width: 400px;
     text-align: center;
@@ -103,17 +90,9 @@ input[type="password"] {
     width: 80%;
     padding: 10px;
     margin: 8px 0;
-    border-radius: 8px;
-    border: none;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
-    font-family: Segoe UI, Arial;
 }
 
-.login-buttons {
-    margin-top: 10px;
-}
-
-.login-buttons button {
-    margin: 5px;
-    font-weight: bold;
+/* CART */
+#cart {
+    margin-top: 20px;
 }
