@@ -31,9 +31,13 @@ const items = [
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
-        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz. 
+        desc: "Optimization of power plans and background processes to make your battery last longer. 
             
-            RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable. 
+    Details: 
+
+    CPU-power limit to 6~9watts and reduce GHz. 
+            
+    RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable. 
     
     Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index. 
     
