@@ -9,37 +9,43 @@ const items = [
         name: "Flappy Bird Game",
         price: 5,
         category: "games",
-        img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+        img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
+        desc: "A classic side-scroller game. Navigate through the pipes and beat your high score!"
     },
     {
         name: "Making Your Laptop run fastest+Advanced Tweaks🔥",
         price: 100,
         category: "optimizing",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
+        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
+        desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware."
     },
     {
         name: "Free up your laptop storage",
         price: 100,
         category: "optimizing",
-        img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg"
+        img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg",
+        desc: "Professional cleaning of junk files, cache, and duplicate data to regain lost space."
     },
     {
         name: "Extend your laptop's battery life",
         price: 50,
         category: "optimizing",
-        img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg"
+        img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
+        desc: "Optimization of power plans and background processes to make your battery last longer."
     },
     {
-        name: "Add another Operating system to your laptop. OS supported: Win11, Win10, Ubuntu, Tiny11. Note that your hardware may not support some systems.",
+        name: "Add another Operating system to your laptop",
         price: 150,
         category: "optimizing",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
+        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
+        desc: "Dual-boot setup for Win11, Win10, Ubuntu, or Tiny11. System compatibility check included."
     },
     {
-        name: "Diagnose your laptop: See your laptop's strengths and weaknesses/problems.",
+        name: "Diagnose your laptop",
         price: 100,
         category: "optimizing",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
+        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
+        desc: "Full hardware and software diagnostic report to identify problems and bottlenecks."
     },
 ];
 
@@ -61,15 +67,13 @@ function renderItems() {
             item.name.toLowerCase().includes(search)
         )
         .forEach(item => {
+            // Added onclick to the item div to trigger the second layer
             container.innerHTML += `
-                <div class="item">
+                <div class="item" onclick="openProduct('${item.name}')" style="cursor:pointer;">
                     <img src="${item.img}">
                     <h3>${item.name}</h3>
                     <p>NT$${item.price}</p>
-
-                    <input type="number" id="qty-${item.name}" value="1" min="1" style="width:50px;">
-
-                    <button onclick="addToCart('${item.name}', ${item.price})">
+                    <button onclick="event.stopPropagation(); addToCart('${item.name}', ${item.price})">
                         Add to Cart
                     </button>
                 </div>
@@ -77,9 +81,51 @@ function renderItems() {
         });
 }
 
+// ================= SECOND LAYER LOGIC =================
+function openProduct(name) {
+    const item = items.find(i => i.name === name);
+    const storeLayer = document.getElementById("store-layer");
+    const detailLayer = document.getElementById("detail-layer");
+    const detailContent = document.getElementById("detailContent");
+
+    detailContent.innerHTML = `
+        <div style="display: flex; gap: 20px; align-items: start;">
+            <img src="${item.img}" style="width: 300px; border-radius: 8px;">
+            <div>
+                <h2>${item.name}</h2>
+                <p style="font-size: 1.2em; margin: 10px 0;">${item.desc || "No description available."}</p>
+                <h3 style="color: #0044cc;">Price: NT$${item.price}</h3>
+                
+                <div style="margin-top: 20px;">
+                    <input type="number" id="detail-qty" value="1" min="1" style="width:50px; padding: 5px;">
+                    <button onclick="addToCart('${item.name}', ${item.price}, true)">
+                        ✨ Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    storeLayer.style.display = "none";
+    detailLayer.style.display = "block";
+}
+
+function closeDetails() {
+    document.getElementById("store-layer").style.display = "block";
+    document.getElementById("detail-layer").style.display = "none";
+}
+
 // ================= ADD TO CART =================
-function addToCart(name, price) {
-    const qty = parseInt(document.getElementById("qty-" + name).value);
+// Modified to handle quantity from both the main grid and the detail view
+function addToCart(name, price, fromDetail = false) {
+    let qty;
+    if (fromDetail) {
+        qty = parseInt(document.getElementById("detail-qty").value);
+    } else {
+        // Fallback for main grid if you keep the inputs there
+        const qtyInput = document.getElementById("qty-" + name);
+        qty = qtyInput ? parseInt(qtyInput.value) : 1;
+    }
 
     const existing = cart.find(i => i.name === name);
 
@@ -91,7 +137,8 @@ function addToCart(name, price) {
 
     total += price * qty;
 
-    document.getElementById("dingSound").play();
+    const sound = document.getElementById("dingSound");
+    if (sound) sound.play();
 
     renderCart();
     saveCart();
@@ -100,6 +147,7 @@ function addToCart(name, price) {
 // ================= CART RENDER =================
 function renderCart() {
     const list = document.getElementById("cartList");
+    if (!list) return;
     list.innerHTML = "";
 
     cart.forEach((item, index) => {
@@ -113,8 +161,10 @@ function renderCart() {
 
     document.getElementById("total").innerText = total;
 
-    document.getElementById("paymentRule").innerText =
-        total >= 500 ? "Cash Before Delivery" : "Cash Only";
+    const paymentRule = document.getElementById("paymentRule");
+    if (paymentRule) {
+        paymentRule.innerText = total >= 500 ? "Cash Before Delivery" : "Cash Only";
+    }
 }
 
 // ================= REMOVE ITEM =================
@@ -125,7 +175,7 @@ function removeItem(i) {
     saveCart();
 }
 
-// ================= SAVE CART =================
+// ================= SAVE/LOAD CART =================
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("total", total);
@@ -136,7 +186,7 @@ function loadCart() {
     const savedTotal = localStorage.getItem("total");
 
     if (saved) cart = JSON.parse(saved);
-    if (savedTotal) total = parseInt(savedTotal);
+    if (savedTotal) total = parseInt(savedTotal) || 0;
 
     renderCart();
 }
@@ -162,10 +212,8 @@ function checkout() {
     })
     .then(() => {
         alert("✅ Order sent successfully!");
-
         cart = [];
         total = 0;
-
         saveCart();
         renderCart();
     })
@@ -173,42 +221,6 @@ function checkout() {
         console.log("EMAIL ERROR:", err);
         alert("❌ Failed to send order");
     });
-}
-
-// ================= AUTH (optional backend) =================
-const API_URL = "https://your-backend-url.com";
-
-async function register() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    await fetch(`${API_URL}/api/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    });
-
-    alert("Registered!");
-}
-
-async function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    const res = await fetch(`${API_URL}/api/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    });
-
-    const data = await res.json();
-
-    if (data.token) {
-        localStorage.setItem("token", data.token);
-        alert("Login success");
-    } else {
-        alert("Login failed");
-    }
 }
 
 // ================= INIT =================
