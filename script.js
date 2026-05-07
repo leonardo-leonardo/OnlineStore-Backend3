@@ -9,7 +9,7 @@ const items = [
         name: "Flappy Bird Game",
         price: 5,
         category: "games",
-        img: "https://th.bing.com/th/id/R.567e72625ae82468e5116ce92dc24bde?rik=kqrAxxOrUhrXPg&riu=http%3a%2f%2fassets1.ignimgs.com%2f2014%2f01%2f31%2fflappy-bird-buttonjpg-e984c2.jpg"
+        img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
         name: "Laptop Optimizing",
