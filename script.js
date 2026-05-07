@@ -67,13 +67,13 @@ function renderItems() {
             item.name.toLowerCase().includes(search)
         )
         .forEach(item => {
-            // Added onclick to the item div to trigger the second layer
+            // FIXED: Using backticks inside the function call to handle apostrophes
             container.innerHTML += `
-                <div class="item" onclick="openProduct('${item.name}')" style="cursor:pointer;">
+                <div class="item" onclick="openProduct(\`${item.name}\`)" style="cursor:pointer;">
                     <img src="${item.img}">
                     <h3>${item.name}</h3>
                     <p>NT$${item.price}</p>
-                    <button onclick="event.stopPropagation(); addToCart('${item.name}', ${item.price})">
+                    <button onclick="event.stopPropagation(); addToCart(\`${item.name}\`, ${item.price})">
                         Add to Cart
                     </button>
                 </div>
@@ -89,16 +89,16 @@ function openProduct(name) {
     const detailContent = document.getElementById("detailContent");
 
     detailContent.innerHTML = `
-        <div style="display: flex; gap: 20px; align-items: start;">
+        <div style="display: flex; gap: 20px; align-items: start; color: #000;">
             <img src="${item.img}" style="width: 300px; border-radius: 8px;">
             <div>
                 <h2>${item.name}</h2>
-                <p style="font-size: 1.2em; margin: 10px 0;">${item.desc || "No description available."}</p>
+                <p style="font-size: 1.1em; margin: 10px 0; line-height: 1.4;">${item.desc || "No description available."}</p>
                 <h3 style="color: #0044cc;">Price: NT$${item.price}</h3>
                 
                 <div style="margin-top: 20px;">
                     <input type="number" id="detail-qty" value="1" min="1" style="width:50px; padding: 5px;">
-                    <button onclick="addToCart('${item.name}', ${item.price}, true)">
+                    <button onclick="addToCart(\`${item.name}\`, ${item.price}, true)">
                         ✨ Add to Cart
                     </button>
                 </div>
@@ -116,13 +116,11 @@ function closeDetails() {
 }
 
 // ================= ADD TO CART =================
-// Modified to handle quantity from both the main grid and the detail view
 function addToCart(name, price, fromDetail = false) {
     let qty;
     if (fromDetail) {
         qty = parseInt(document.getElementById("detail-qty").value);
     } else {
-        // Fallback for main grid if you keep the inputs there
         const qtyInput = document.getElementById("qty-" + name);
         qty = qtyInput ? parseInt(qtyInput.value) : 1;
     }
