@@ -37,7 +37,7 @@ const items = [
         name: "Add another Operating system to your laptop",
         price: 150,
         category: "optimizing",
-        img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/670a8c33-848a-4363-80fa-d69bc6f1a8d9.jpg",
+        img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/Choosing%20Opearting%20System%20Menu.jpg",
         desc: "Dual-boot setup for Win11, Win10, Ubuntu, or Tiny11. System compatibility check included."
     },
     {
