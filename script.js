@@ -37,7 +37,7 @@ const items = [
         name: "Add another Operating system to your laptop",
         price: 150,
         category: "optimizing",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
+        img: "blob:https://gemini.google.com/1e1d11b4-8aa0-40dc-905f-d248837a33c4",
         desc: "Dual-boot setup for Win11, Win10, Ubuntu, or Tiny11. System compatibility check included."
     },
     {
