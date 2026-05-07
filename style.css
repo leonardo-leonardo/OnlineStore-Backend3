@@ -96,3 +96,20 @@ button:hover {
 #cart {
     margin-top: 20px;
 }
+
+/* --- ADDED FOR SECOND LAYER --- */
+
+#detail-layer {
+    /* Uses the same glass logic as your other containers */
+    max-width: 900px;
+    margin: 20px auto !important;
+}
+
+#detailContent img {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+#store-layer {
+    display: block; /* Controlled by JS */
+}
