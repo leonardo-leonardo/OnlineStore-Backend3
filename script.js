@@ -43,14 +43,14 @@ const items = [
     {
         name: "Diagnose your laptop/Pc",
         price: 100,
-        category: "optimizing",
+        category: "diagnose",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
         desc: "Full hardware and software diagnostic report to identify problems and bottlenecks."
     },
      {
         name: "Install A Mac OS in a Windows laptop/pc, with a virtual machine",
         price: 200,
-        category: "install new things",
+        category: "install",
         img: "https://logos-world.net/wp-content/uploads/2023/03/Mac-Logo.png",
         desc: "Installing a Mac OS in your Windows pc, using VMware Workstation Pro. #I will also maximize the performance of the VM. *The performance may decrease if Mac doesn't support your graphics."
     },
