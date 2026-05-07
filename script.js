@@ -28,7 +28,7 @@ const items = [
         price: 50,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg"
-    }
+    },
     {
         name: "Add another Operating system to your laptop. OS supported: Win11, Win10, Ubuntu, Tiny11. Note that your hardware may not support some systems.",
         price: 150,
