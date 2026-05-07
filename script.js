@@ -13,39 +13,46 @@ const items = [
         desc: "A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score!"
     },
     {
-        name: "Making Your Laptop run fastest+Advanced Tweaks🔥",
+        name: "Making Your Laptop/Pc run fastest+Advanced Tweaks🔥",
         price: 100,
         category: "optimizing",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
         desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware🔥."
     },
     {
-        name: "Free up your laptop storage",
+        name: "Free up your laptop/Pc storage",
         price: 100,
         category: "optimizing",
         img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg",
         desc: "Professional cleaning of cache, windows update leftovers, files that are no longer needed to regain lost space."
     },
     {
-        name: "Extend your laptop's battery life",
+        name: "Extend your laptop and Pc's battery life",
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
         desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz.          RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable.          Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index.          Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft.          GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable).          NPU-Disable it for better efficiency(If you have one)."
     },
     {
-        name: "Add another Operating system to your laptop",
+        name: "Add another Operating system to your laptop/Pc",
         price: 150,
         category: "optimizing",
         img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/Choosing%20Opearting%20System%20Menu.jpg",
         desc: "Dual-boot setup for Windows11, Windows10, Ubuntu, Tiny11 and Windows 7. System compatibility check included. #I can also install other operating systems if your hardware allows! *Unfortunately, some operating systems can't install because laptops/pc hardware doesn't support."
     },
     {
-        name: "Diagnose your laptop",
+        name: "Diagnose your laptop/Pc",
         price: 100,
         category: "optimizing",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
         desc: "Full hardware and software diagnostic report to identify problems and bottlenecks."
+    },
+     {
+        name: "Install A Mac OS in a Windows laptop/pc, with a virtual machine",
+        price: 200,
+        category: "install new things",
+        img: "https://logos-world.net/wp-content/uploads/2023/03/Mac-Logo.png",
+        desc: "Installing a Mac OS in your Windows pc, using VMware Workstation Pro. #I will also maximize the performance of the VM. *The performance may decrease if Mac doesn't support your graphics."
     },
 ];
 
@@ -192,7 +199,7 @@ function loadCart() {
 // ================= EMAILJS CHECKOUT =================
 function checkout() {
     if (cart.length === 0) {
-        alert("Cart is empty!");
+        alert("Cart is empty!🥲");
         return;
     }
 
@@ -209,7 +216,7 @@ function checkout() {
         price: total
     })
     .then(() => {
-        alert("✅ Order sent successfully!");
+        alert("✅ Order sent successfully!😄");
         cart = [];
         total = 0;
         saveCart();
