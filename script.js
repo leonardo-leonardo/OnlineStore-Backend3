@@ -38,7 +38,7 @@ const items = [
         price: 150,
         category: "optimizing",
         img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/Choosing%20Opearting%20System%20Menu.jpg",
-        desc: "Dual-boot setup for Win11, Win10, Ubuntu, or Tiny11. System compatibility check included."
+        desc: "Dual-boot setup for Windows11, Windows10, Ubuntu, Tiny11 and Windows 7. System compatibility check included. #I can also install other operating systems if your hardware allows! *Unfortunately, some operating systems can't install because laptops/pc hardware doesn't support."
     },
     {
         name: "Diagnose your laptop",
