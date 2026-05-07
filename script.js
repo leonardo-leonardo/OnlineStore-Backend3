@@ -12,23 +12,35 @@ const items = [
         img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
-        name: "Laptop Optimizing",
+        name: "Making Your Laptop run fastest+Advanced Tweaks🔥",
         price: 100,
         category: "optimizing",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
     },
     {
-        name: "Storage Optimization",
+        name: "Free up your laptop storage",
         price: 100,
         category: "optimizing",
         img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg"
     },
     {
-        name: "Power Saving Mode",
+        name: "Extend your laptop's battery life",
         price: 50,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg"
     }
+    {
+        name: "Add another Operating system to your laptop. OS supported: Win11, Win10, Ubuntu, Tiny11. Note that your hardware may not support some systems.",
+        price: 150,
+        category: "optimizing",
+        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
+    },
+    {
+        name: "Diagnose your laptop: See your laptop's strengths and weaknesses/problems.",
+        price: 100,
+        category: "optimizing",
+        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg"
+    },
 ];
 
 // ================= CART =================
