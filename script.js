@@ -44,7 +44,7 @@ const items = [
         name: "Diagnose your laptop/Pc",
         price: 100,
         category: "diagnose",
-        img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
+        img: "https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2017/12/Signs-Computer-Has-Virus-Featured.jpg",
         desc: "Full hardware and software diagnostic report to identify problems and bottlenecks."
     },
      {
