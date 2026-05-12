@@ -3,6 +3,31 @@
     emailjs.init("w-EA-SaRhXquiCgRI");
 })();
 
+// ================= NAVIGATION LOGIC (NEW) =================
+function showSection(sectionId) {
+    // Hide all main sections
+    const sections = ['store-layer', 'auth-layer', 'cart-section', 'detail-layer'];
+    
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
+    // Show the requested section
+    const target = document.getElementById(sectionId);
+    if (target) {
+        // Auth layer and Cart section look better with flex in Windows 7 style
+        if (sectionId === 'auth-layer' || sectionId === 'cart-section') {
+            target.style.display = 'block'; 
+        } else {
+            target.style.display = 'block';
+        }
+    }
+    
+    // Always scroll to top on change
+    window.scrollTo(0, 0);
+}
+
 // ================= PRODUCTS =================
 const items = [
     {
@@ -31,7 +56,7 @@ const items = [
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
-        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz.          RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable.          Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index.          Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft.          GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable).          NPU-Disable it for better efficiency(If you have one)."
+        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz. RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable. Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index. Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft. GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable). NPU-Disable it for better efficiency(If you have one)."
     },
     {
         name: "Add another Operating system to your laptop/Pc",
@@ -56,13 +81,14 @@ const items = [
     },
 ];
 
-// ================= CART =================
+// ================= CART STATE =================
 let cart = [];
 let total = 0;
 
 // ================= RENDER ITEMS =================
 function renderItems() {
     const container = document.getElementById("itemsContainer");
+    if (!container) return;
     container.innerHTML = "";
 
     const search = document.getElementById("searchBar").value.toLowerCase();
@@ -74,7 +100,6 @@ function renderItems() {
             item.name.toLowerCase().includes(search)
         )
         .forEach(item => {
-            // FIXED: Using backticks inside the function call to handle apostrophes
             container.innerHTML += `
                 <div class="item" onclick="openProduct(\`${item.name}\`)" style="cursor:pointer;">
                     <img src="${item.img}">
@@ -88,15 +113,13 @@ function renderItems() {
         });
 }
 
-// ================= SECOND LAYER LOGIC =================
+// ================= PRODUCT DETAILS =================
 function openProduct(name) {
     const item = items.find(i => i.name === name);
-    const storeLayer = document.getElementById("store-layer");
-    const detailLayer = document.getElementById("detail-layer");
     const detailContent = document.getElementById("detailContent");
 
     detailContent.innerHTML = `
-        <div style="display: flex; gap: 20px; align-items: start; color: #000;">
+        <div class="detail-flex" style="display: flex; gap: 20px; align-items: start; color: #000;">
             <img src="${item.img}" style="width: 300px; border-radius: 8px;">
             <div>
                 <h2>${item.name}</h2>
@@ -113,23 +136,20 @@ function openProduct(name) {
         </div>
     `;
 
-    storeLayer.style.display = "none";
-    detailLayer.style.display = "block";
+    showSection('detail-layer');
 }
 
 function closeDetails() {
-    document.getElementById("store-layer").style.display = "block";
-    document.getElementById("detail-layer").style.display = "none";
+    showSection('store-layer');
 }
 
-// ================= ADD TO CART =================
+// ================= CART LOGIC =================
 function addToCart(name, price, fromDetail = false) {
     let qty;
     if (fromDetail) {
         qty = parseInt(document.getElementById("detail-qty").value);
     } else {
-        const qtyInput = document.getElementById("qty-" + name);
-        qty = qtyInput ? parseInt(qtyInput.value) : 1;
+        qty = 1;
     }
 
     const existing = cart.find(i => i.name === name);
@@ -149,7 +169,6 @@ function addToCart(name, price, fromDetail = false) {
     saveCart();
 }
 
-// ================= CART RENDER =================
 function renderCart() {
     const list = document.getElementById("cartList");
     if (!list) return;
@@ -172,7 +191,6 @@ function renderCart() {
     }
 }
 
-// ================= REMOVE ITEM =================
 function removeItem(i) {
     total -= cart[i].price * cart[i].qty;
     cart.splice(i, 1);
@@ -180,7 +198,7 @@ function removeItem(i) {
     saveCart();
 }
 
-// ================= SAVE/LOAD CART =================
+// ================= STORAGE =================
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("total", total);
@@ -196,7 +214,22 @@ function loadCart() {
     renderCart();
 }
 
-// ================= EMAILJS CHECKOUT =================
+// ================= AUTH (Placeholders) =================
+function login() {
+    const user = document.getElementById("username").value;
+    if(user) {
+        document.getElementById("authMessage").innerText = "Welcome, " + user + "!";
+        document.getElementById("authMessage").style.color = "green";
+    } else {
+        alert("Please enter a username.");
+    }
+}
+
+function register() {
+    alert("Registration feature coming soon!");
+}
+
+// ================= CHECKOUT =================
 function checkout() {
     if (cart.length === 0) {
         alert("Cart is empty!🥲");
