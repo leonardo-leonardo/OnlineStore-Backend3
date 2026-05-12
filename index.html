@@ -2,35 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aero Glass Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Windows Style Taskbar -->
 <div id="taskbar">
-    🪟 Made by Leonardo
+    <div class="taskbar-left">
+        <span class="start-btn">🪟</span>
+        <span>Made by Leonardo</span>
+    </div>
 </div>
 
-<div id="store-layer">
+<!-- NEW: Navigation Bar -->
+<nav class="navbar glass">
+    <div class="nav-logo">Aero Glass Store</div>
+    <ul class="nav-links">
+        <li><a href="#" onclick="showSection('store-layer')">Home</a></li>
+        <li><a href="#" onclick="showSection('store-layer')">Products</a></li>
+        <li><a href="#" onclick="showSection('cart-section')">Cart</a></li>
+        <li><a href="#" onclick="showSection('auth-layer')">Login</a></li>
+        <li><a href="#" onclick="showSection('auth-layer')" class="btn-register">Register</a></li>
+    </ul>
+</nav>
+
+<!-- MAIN STORE CONTENT -->
+<div id="store-layer" class="page-section">
     <div class="glass" style="margin: 20px;">
         <h1>🛒 Aero Glass Store (Windows 7 Style)</h1>
 
-        <input type="text" id="searchBar" placeholder="Search items..." onkeyup="renderItems()">
-        
-        <select id="categorySelect" onchange="renderItems()">
-            <option value="all">All Categories</option>
-            <option value="games">Games</option>
-            <option value="optimizing">Optimizing</option>
-            <option value="diagnose">Diagnose</option>
-            <option value="install">Install</option>
-        </select>
+        <div class="search-controls">
+            <input type="text" id="searchBar" placeholder="Search items..." onkeyup="renderItems()">
+            
+            <select id="categorySelect" onchange="renderItems()">
+                <option value="all">All Categories</option>
+                <option value="games">Games</option>
+                <option value="optimizing">Optimizing</option>
+                <option value="diagnose">Diagnose</option>
+                <option value="install">Install</option>
+            </select>
+        </div>
     </div>
 
-    <div class="glass login-box" style="margin:20px;">
+    <!-- Items Container -->
+    <div id="itemsContainer" class="glass" style="margin: 20px;"></div>
+</div>
+
+<!-- NEW: AUTHENTICATION LAYER (Login/Register) -->
+<div id="auth-layer" class="page-section" style="display: none;">
+    <div class="glass login-box" style="margin:20px; max-width: 500px; margin-left: auto; margin-right: auto;">
         <h2>🔐 User Account</h2>
 
         <div class="login-inputs">
+            <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter Username">
+            
+            <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter Password">
         </div>
 
@@ -41,32 +70,32 @@
 
         <p id="authMessage"></p>
     </div>
+</div>
 
-    <div id="itemsContainer" class="glass" style="margin: 20px;"></div>
-
+<!-- NEW: CART SECTION (Separated for Navigation) -->
+<div id="cart-section" class="page-section" style="display: none;">
     <div id="cart" class="glass" style="margin: 20px;">
-        <h2>Your Cart</h2>
+        <h2>🛒 Your Cart</h2>
 
         <ul id="cartList"></ul>
 
-        <p><strong>Total: NT$<span id="total">0</span></strong></p>
-
-        <p><strong>Payment: <span id="paymentRule">Cash Only</span></strong></p>
-
-        <button onclick="checkout()">Checkout (Send Email)</button>
+        <div class="cart-summary">
+            <p><strong>Total: NT$<span id="total">0</span></strong></p>
+            <p><strong>Payment: <span id="paymentRule">Cash Only</span></strong></p>
+            <button onclick="checkout()" class="checkout-btn">Checkout (Send Email)</button>
+        </div>
     </div>
 </div>
 
-<div id="detail-layer" class="glass" style="margin: 20px; display: none;">
+<!-- DETAIL LAYER -->
+<div id="detail-layer" class="glass page-section" style="margin: 20px; display: none;">
     <button onclick="closeDetails()" style="margin-bottom: 15px;">⬅️ Back to Store</button>
-    <div id="detailContent">
-        </div>
+    <div id="detailContent"></div>
 </div>
 
+<!-- Audio and Scripts -->
 <audio id="dingSound" src="https://www.myinstants.com/media/sounds/windows-ding.mp3"></audio>
-
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
 <script src="script.js"></script>
 
 </body>
