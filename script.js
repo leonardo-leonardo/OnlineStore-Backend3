@@ -10,14 +10,14 @@ const items = [
         price: 5,
         category: "games",
         img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
-        desc: "A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score!"
+        desc: "A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score with your friends!"
     },
     {
         name: "Making Your Laptop/Pc run fastest+Advanced Tweaks🔥",
         price: 100,
         category: "optimizing",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
-        desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware🔥."
+        desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware🔥. CPU max performance via throttlestop. RAM: Free up your RAM by minimizing background processes and enabling memory compression. SSD/HDD: Minimizing disk activity by disabling certain services. Wifi: Enable low-latency and high-bandwidth profile with the device manager. GPU(Intel only): Using Intel graphics command center(BETA)to enable full performance of your graphics."
     },
     {
         name: "Free up your laptop/Pc storage",
@@ -31,7 +31,7 @@ const items = [
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
-        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz.          RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable.          Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index.          Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft.          GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable).          NPU-Disable it for better efficiency(If you have one)."
+        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz. RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable. Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index. Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft. GPU-Use power saving mode with vendor-specific apps(Intel graphics commmand center...), disable dedicated GPU(if acceptable). NPU-Disable it for better efficiency if you are not using AI features offline at all(If you have one)."
     },
     {
         name: "Add another Operating system to your laptop/Pc",
