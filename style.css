@@ -1,31 +1,44 @@
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(#2a69d0, #1a4c9c);
-    background-attachment: fixed; /* Keeps background still when scrolling */
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     color: #fff;
-    padding-bottom: 60px; /* Space for the fixed taskbar */
+    padding-bottom: 70px;
 }
 
-/* --- NAVIGATION BAR (NEW) --- */
+/* GLASS LAYOUTS */
+.glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.18);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 20px;
+    color: #000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* NAVBAR UPGRADES */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
+    padding: 12px 5%;
     position: sticky;
     top: 0;
     z-index: 1000;
     margin-bottom: 20px;
-    border-radius: 0 0 12px 12px !important; /* Rounded bottom corners */
+    border-radius: 0 0 12px 12px !important;
 }
 
 .nav-logo {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: #000;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    cursor: pointer;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
 .nav-links {
@@ -40,63 +53,25 @@ body {
     text-decoration: none;
     color: #000;
     font-weight: 600;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
     transition: 0.2s;
 }
 
 .nav-links a:hover {
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
 }
 
-.btn-register {
-    background: rgba(0, 210, 255, 0.4) !important;
-    border: 1px solid rgba(255,255,255,0.5);
-}
+.btn-register { background: rgba(0, 210, 255, 0.3) !important; }
+.btn-logout { background: rgba(255, 90, 90, 0.3) !important; }
 
-/* --- GLASS MORPHISM --- */
-.glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.18);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 20px;
-    color: #000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
+/* INPUT CONTROLS */
+.search-controls { display: flex; gap: 10px; margin-top: 15px; }
+#searchBar { flex: 1; padding: 10px; border-radius: 20px; border: none; outline: none; }
+select { padding: 10px; border-radius: 8px; border: none; background: white; }
 
-/* --- INPUTS & CONTROLS --- */
-.search-controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-#searchBar {
-    flex: 1;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(0,0,0,0.2);
-    outline: none;
-}
-
-select {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.2);
-    background: #fff;
-}
-
-/* --- PRODUCTS GRID --- */
-#itemsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    min-height: 200px;
-}
-
+/* RE-ENGINEERED COMPACT PRODUCT GRID */
+#itemsContainer { display: flex; flex-wrap: wrap; justify-content: center; }
 .item {
     width: 260px;
     background: rgba(255,255,255,0.25);
@@ -109,109 +84,68 @@ select {
     text-align: center;
     border: 1px solid rgba(255,255,255,0.2);
 }
+.item:hover { transform: scale(1.05); }
+.item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; }
 
-.item:hover {
-    transform: scale(1.05);
-    background: rgba(255,255,255,0.35);
-}
-
-.item img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* --- BUTTONS --- */
-button {
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.2);
-    cursor: pointer;
-    background: linear-gradient(#ffffff, #ceddf0);
-    font-weight: bold;
-    color: #333;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: linear-gradient(#e8f0ff, #abbcdb);
-    transform: translateY(-1px);
-}
-
-/* --- TASKBAR --- */
-#taskbar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: rgba(20,20,20,0.6);
-    backdrop-filter: blur(15px);
-    padding: 8px 20px;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    z-index: 2000;
-    border-top: 1px solid rgba(255,255,255,0.2);
-}
-
-.start-btn {
-    font-size: 20px;
-    margin-right: 15px;
-    cursor: pointer;
-    text-shadow: 0 0 10px #00d2ff;
-}
-
-/* --- LOGIN & SECTIONS --- */
-.page-section {
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.login-box {
-    max-width: 400px;
-    margin: 40px auto !important;
-}
-
+/* REAL SEPARATED FORM RENDERING */
+.login-box { max-width: 420px; margin: 60px auto !important; text-align: center; }
 .login-inputs input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.2);
     box-sizing: border-box;
 }
 
-.login-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-/* --- CART --- */
-#cartList {
-    list-style: none;
-    padding: 0;
-}
-
-#cartList li {
-    background: rgba(255,255,255,0.2);
-    margin: 5px 0;
-    padding: 10px;
+/* BUTTON ENGINE */
+button {
+    padding: 10px 20px;
     border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.15);
+    cursor: pointer;
+    background: linear-gradient(#ffffff, #ceddf0);
+    font-weight: bold;
+    color: #222;
+    transition: 0.2s;
+}
+button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1.02); }
+
+/* QUANTITY SYSTEM CONTROLS IN DETAILED VIEW */
+.cart-item-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
 }
+.qty-controls { display: flex; align-items: center; gap: 12px; }
+.qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
+.qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-.cart-summary {
-    margin-top: 20px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    padding-top: 15px;
+/* FIXED RE-ARCHITECTED TASKBAR */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(20,20,20,0.75);
+    backdrop-filter: blur(15px);
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    z-index: 2000;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
+.taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
+.cart-overview { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 6px; cursor: pointer; }
+.cart-overview:hover { background: rgba(255,255,255,0.3); }
+.start-btn { font-size: 22px; cursor: pointer; }
+.auth-msg { margin-top: 10px; font-weight: bold; }
 
-/* --- ANIMATIONS --- */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.page-section { animation: sectionFade 0.25s ease-out; }
+@keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
