@@ -8,7 +8,7 @@ body {
     padding-bottom: 70px;
 }
 
-/* GLASS LAYOUTS */
+/* GLASS EFFECT STYLE */
 .glass {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -20,7 +20,7 @@ body {
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* NAVBAR UPGRADES */
+/* NAVBAR DESIGN */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,12 +65,12 @@ body {
 .btn-register { background: rgba(0, 210, 255, 0.3) !important; }
 .btn-logout { background: rgba(255, 90, 90, 0.3) !important; }
 
-/* INPUT CONTROLS */
+/* SEARCH CONTROLS */
 .search-controls { display: flex; gap: 10px; margin-top: 15px; }
 #searchBar { flex: 1; padding: 10px; border-radius: 20px; border: none; outline: none; }
 select { padding: 10px; border-radius: 8px; border: none; background: white; }
 
-/* RE-ENGINEERED COMPACT PRODUCT GRID */
+/* PRODUCT RENDERING GRID */
 #itemsContainer { display: flex; flex-wrap: wrap; justify-content: center; }
 .item {
     width: 260px;
@@ -87,7 +87,7 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
 .item:hover { transform: scale(1.05); }
 .item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; }
 
-/* REAL SEPARATED FORM RENDERING */
+/* SEPARATED AUTH CARD FORM LAYOUTS */
 .login-box { max-width: 420px; margin: 60px auto !important; text-align: center; }
 .login-inputs input {
     width: 100%;
@@ -97,8 +97,10 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
     border: 1px solid rgba(0,0,0,0.2);
     box-sizing: border-box;
 }
+.switch-form-text { margin-top: 15px; font-size: 0.9em; }
+.switch-form-text a { color: #1a4c9c; font-weight: bold; text-decoration: underline; cursor: pointer; }
 
-/* BUTTON ENGINE */
+/* BUTTON SYSTEM ENGINE */
 button {
     padding: 10px 20px;
     border-radius: 8px;
@@ -125,7 +127,7 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* FIXED RE-ARCHITECTED TASKBAR */
+/* FIXED TASKBAR STYLING */
 #taskbar {
     position: fixed;
     bottom: 0;
@@ -146,6 +148,60 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .cart-overview:hover { background: rgba(255,255,255,0.3); }
 .start-btn { font-size: 22px; cursor: pointer; }
 .auth-msg { margin-top: 10px; font-weight: bold; }
+
+/* FLYING ORB MICRO-INTERACTION */
+.flying-orb {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #00d2ff, #1a4c9c);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px #1a4c9c;
+    z-index: 9999;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* TASKBAR CART BUMP */
+@keyframes cartBump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); background: rgba(0, 210, 255, 0.4); }
+    100% { transform: scale(1); }
+}
+.cart-bump-active { animation: cartBump 0.3s ease-out; }
+
+/* WINDOWS 7 LOADING OVERLAY SCREENS */
+.checkout-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+.loading-card { text-align: center; width: 340px; padding: 30px !important; }
+.win7-loader { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; }
+.win7-loader span {
+    width: 12px;
+    height: 12px;
+    background: #00d2ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00d2ff;
+    animation: win7Dots 1.2s infinite ease-in-out;
+}
+.win7-loader span:nth-child(2) { animation-delay: 0.2s; }
+.win7-loader span:nth-child(3) { animation-delay: 0.4s; }
+.win7-loader span:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes win7Dots {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+}
 
 .page-section { animation: sectionFade 0.25s ease-out; }
 @keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
