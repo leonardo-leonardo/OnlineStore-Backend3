@@ -88,7 +88,7 @@ function renderItems() {
                     <img src="${item.img}">
                     <h3>${item.name}</h3>
                     <p>NT$${item.price}</p>
-                    <button onclick="event.stopPropagation(); addToCart(\`${item.name}\`, ${item.price})">Add to Cart</button>
+                    <button onclick="event.stopPropagation(); addToCart(\`${item.name}\`, ${item.price}, event)">Add to Cart</button>
                 </div>`;
         });
 }
@@ -103,7 +103,7 @@ function openProduct(name) {
                 <h2>${item.name}</h2>
                 <p style="line-height: 1.5; margin: 12px 0;">${item.desc}</p>
                 <h3 style="color: #1a4c9c;">Price: NT$${item.price}</h3>
-                <button onclick="addToCart(\`${item.name}\`, ${item.price})" style="margin-top:15px;">✨ Add to Cart</button>
+                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px;">✨ Add to Cart</button>
             </div>
         </div>`;
     showSection('detail-layer');
@@ -111,13 +111,44 @@ function openProduct(name) {
 
 function closeDetails() { showSection('store-layer'); }
 
-// ================= DUAL SYNC CART SYSTEM =================
-function addToCart(name, price) {
+// ================= DUAL SYNC CART SYSTEM WITH FLYING ANIMATION =================
+function addToCart(name, price, event) {
     const existing = cart.find(i => i.name === name);
     if (existing) { existing.qty += 1; } else { cart.push({ name, price, qty: 1 }); }
-    updateCartTotals();
+    
     const sound = document.getElementById("dingSound");
     if (sound) sound.play();
+
+    // Visual Animation Trajectory Setup
+    const startX = event ? event.clientX : window.innerWidth / 2;
+    const startY = event ? event.clientY : window.innerHeight / 2;
+    
+    const targetCart = document.querySelector(".cart-overview");
+    const targetRect = targetCart.getBoundingClientRect();
+    const orb = document.getElementById("flying-orb");
+    
+    orb.style.left = `${startX}px`;
+    orb.style.top = `${startY}px`;
+    orb.style.display = "block";
+    orb.style.transform = "scale(1)";
+    orb.style.opacity = "1";
+
+    void orb.offsetWidth; // Force Reflow Matrix
+
+    orb.style.left = `${targetRect.left + 20}px`;
+    orb.style.top = `${targetRect.top + 10}px`;
+    orb.style.transform = "scale(0.3)";
+    orb.style.opacity = "0.2";
+
+    setTimeout(() => {
+        orb.style.display = "none";
+        targetCart.classList.add("cart-bump-active");
+        updateCartTotals();
+        
+        setTimeout(() => {
+            targetCart.classList.remove("cart-bump-active");
+        }, 300);
+    }, 600);
 }
 
 function updateQty(index, offset) {
@@ -138,20 +169,19 @@ function updateCartTotals() {
     document.getElementById("cartCount").innerText = totalCount;
     document.getElementById("taskbarTotal").innerText = total;
     
-    // Render detailed View
     const detailedList = document.getElementById("detailedCartList");
     if (detailedList) {
         detailedList.innerHTML = cart.length === 0 ? "<p style='color:#000;'>Your cart is currently empty.</p>" : "";
         cart.forEach((item, index) => {
             detailedList.innerHTML += `
                 <div class="cart-item-row">
-                    <span style="font-weight:600; width:40%;">${item.name}</span>
+                    <span style="font-weight:600; width:40%; text-align:left;">${item.name}</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
                         <span class="qty-val">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     </div>
-                    <span style="font-weight:600;">NT$${item.price * item.qty}</span>
+                    <span style="font-weight:600; min-width:80px; text-align:right;">NT$${item.price * item.qty}</span>
                     <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:white;">❌</button>
                 </div>`;
         });
@@ -182,7 +212,7 @@ function handleRegister(e) {
         return showAuthMsg(msg, "Username already taken!", "red");
     }
 
-    users.push({ username: user, email: email, password: btoa(pass) }); // btoa simulates server side hash hashing safely
+    users.push({ username: user, email: email, password: btoa(pass) }); 
     localStorage.setItem("aero_users", JSON.stringify(users));
     
     showAuthMsg(msg, "Registration Successful! Redirecting...", "green");
@@ -242,7 +272,7 @@ function syncAuthState() {
 
 function showAuthMsg(el, text, color) { el.innerText = text; el.style.color = color; }
 
-// ================= CHECKOUT INTEGRATION =================
+// ================= ANIMATED CHECKOUT INTEGRATION =================
 function checkout() {
     if (cart.length === 0) return alert("Cart is empty!🥲");
     
@@ -251,21 +281,39 @@ function checkout() {
 
     const orderDetails = cart.map(i => `${i.name} × ${i.qty} = NT$${i.price * i.qty}`).join("\n");
 
-    emailjs.send("service_nb7uhuv", "template_2upy0gm", {
-        name: clientName,
-        product: orderDetails,
-        price: total
-    })
-    .then(() => {
-        alert("✅ Order sent successfully!😄");
-        cart = [];
-        updateCartTotals();
-        showSection('store-layer');
-    })
-    .catch((err) => { alert("❌ Failed to forward transaction sequence."); });
+    const overlay = document.getElementById("checkout-overlay");
+    const loaderText = document.getElementById("loader-text");
+    
+    loaderText.innerText = "Encrypting Pipeline data...";
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+        loaderText.innerText = "Transmitting to EmailJS Gateways...";
+        
+        emailjs.send("service_nb7uhuv", "template_2upy0gm", {
+            name: clientName,
+            product: orderDetails,
+            price: total
+        })
+        .then(() => {
+            loaderText.innerHTML = "<span style='color: #00ff88;'>✅ Order Dispatched!</span>";
+            
+            setTimeout(() => {
+                overlay.style.display = "none";
+                alert("✅ Order sent successfully!😄");
+                cart = [];
+                updateCartTotals();
+                showSection('store-layer');
+            }, 1000);
+        })
+        .catch((err) => {
+            overlay.style.display = "none";
+            alert("❌ Failed to complete transmission sequence.");
+        });
+    }, 1200);
 }
 
-// ================= SYSTEM CONFIGURATION INITIALIZER =================
+// ================= INITIALIZATION =================
 window.onload = function() {
     const savedCart = localStorage.getItem("aero_cart");
     if (savedCart) cart = JSON.parse(savedCart);
