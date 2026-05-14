@@ -8,16 +8,39 @@ body {
     padding-bottom: 70px;
 }
 
-/* GLASS EFFECT STYLE */
+/* GENERAL GLASS PANELS */
 .glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    background: rgba(255, 255, 255, 0.18);
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 20px;
     color: #000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* HIGH-LEGIBILITY LIGHTENED DETAIL GLASS PANEL */
+#detail-layer {
+    max-width: 900px;
+    margin: 20px auto !important;
+    background: rgba(240, 246, 255, 0.45) !important; /* Lighter white-blue tint */
+    backdrop-filter: blur(25px) saturate(160%) !important; /* Deeper Aero blur crystallization */
+    -webkit-backdrop-filter: blur(25px) saturate(160%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.65) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.4);
+    color: #03142e !important; /* Deepest contrast tone for text */
+}
+
+/* Ensure child text elements match readable dark blue tone */
+#detailContent h2, #detailContent h3 {
+    color: #051d3d !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+#detailContent p {
+    color: #08244c !important;
+    font-weight: 500;
 }
 
 /* NAVBAR DESIGN */
@@ -38,7 +61,7 @@ body {
     font-size: 1.3em;
     color: #000;
     cursor: pointer;
-    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .nav-links {
@@ -65,7 +88,7 @@ body {
 .btn-register { background: rgba(0, 210, 255, 0.3) !important; }
 .btn-logout { background: rgba(255, 90, 90, 0.3) !important; }
 
-/* SEARCH CONTROLS */
+/* INPUT CONTROLS */
 .search-controls { display: flex; gap: 10px; margin-top: 15px; }
 #searchBar { flex: 1; padding: 10px; border-radius: 20px; border: none; outline: none; }
 select { padding: 10px; border-radius: 8px; border: none; background: white; }
@@ -74,7 +97,7 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
 #itemsContainer { display: flex; flex-wrap: wrap; justify-content: center; }
 .item {
     width: 260px;
-    background: rgba(255,255,255,0.25);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 12px;
     padding: 15px;
     margin: 15px;
@@ -82,29 +105,29 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
     color: #000;
     transition: 0.2s;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .item:hover { transform: scale(1.05); }
 .item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; }
 
-/* SEPARATED AUTH CARD FORM LAYOUTS */
+/* SEPARATED AUTH CORES */
 .login-box { max-width: 420px; margin: 60px auto !important; text-align: center; }
 .login-inputs input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border-radius: 6px;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
 }
 .switch-form-text { margin-top: 15px; font-size: 0.9em; }
 .switch-form-text a { color: #1a4c9c; font-weight: bold; text-decoration: underline; cursor: pointer; }
 
-/* BUTTON SYSTEM ENGINE */
+/* BUTTON MATRICES */
 button {
     padding: 10px 20px;
     border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     cursor: pointer;
     background: linear-gradient(#ffffff, #ceddf0);
     font-weight: bold;
@@ -113,7 +136,7 @@ button {
 }
 button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1.02); }
 
-/* QUANTITY SYSTEM CONTROLS IN DETAILED VIEW */
+/* QUANTITY MANAGEMENT DISPLAY */
 .cart-item-row {
     display: flex;
     justify-content: space-between;
@@ -127,12 +150,12 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* FIXED TASKBAR STYLING */
+/* FIXED RE-ENGINEERED TASKBAR */
 #taskbar {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(20,20,20,0.75);
+    background: rgba(20, 20, 20, 0.75);
     backdrop-filter: blur(15px);
     padding: 12px 25px;
     display: flex;
@@ -141,15 +164,15 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
     color: #fff;
     z-index: 2000;
     box-sizing: border-box;
-    border-top: 1px solid rgba(255,255,255,0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
-.cart-overview { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 6px; cursor: pointer; }
-.cart-overview:hover { background: rgba(255,255,255,0.3); }
+.cart-overview { background: rgba(255, 255, 255, 0.2); padding: 6px 14px; border-radius: 6px; cursor: pointer; }
+.cart-overview:hover { background: rgba(255, 255, 255, 0.3); }
 .start-btn { font-size: 22px; cursor: pointer; }
 .auth-msg { margin-top: 10px; font-weight: bold; }
 
-/* FLYING ORB MICRO-INTERACTION */
+/* ANIMATION FLUID INTERACTIVE TRIGGERS */
 .flying-orb {
     position: fixed;
     width: 20px;
@@ -162,7 +185,6 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
     transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* TASKBAR CART BUMP */
 @keyframes cartBump {
     0% { transform: scale(1); }
     50% { transform: scale(1.2); background: rgba(0, 210, 255, 0.4); }
@@ -170,7 +192,26 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 }
 .cart-bump-active { animation: cartBump 0.3s ease-out; }
 
-/* WINDOWS 7 LOADING OVERLAY SCREENS */
+/* WINDOWS 3D OPENING SEQUENCER */
+.aero-animate-open {
+    animation: aeroOpen 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    transform-origin: center top;
+}
+
+@keyframes aeroOpen {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) perspective(800px) rotateX(-10deg);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) perspective(800px) rotateX(0deg);
+        filter: blur(0);
+    }
+}
+
+/* SYSTEM PROCESSING WINDOWS OVERLAY */
 .checkout-overlay {
     position: fixed;
     top: 0;
