@@ -3,21 +3,21 @@
     emailjs.init("w-EA-SaRhXquiCgRI");
 })();
 
-// ================= DATA REPOSITORY (DESCRIPTIONS RESTORED) =================
+// ================= DATA REPOSITORY =================
 const items = [
     {
         name: "Flappy Bird Game",
         price: 5,
         category: "games",
         img: "https://tse1.mm.bing.net/th/id/OIP.rsI7PGvojKE3hmTpIVr4UwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
-        desc: "A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score with your friends!"
+        desc: "A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score!"
     },
     {
         name: "Making Your Laptop/Pc run fastest+Advanced Tweaks🔥",
         price: 100,
         category: "optimizing",
         img: "https://mirillis.com/blog/wp-content/uploads/2017/10/Increase-PC-Speed-1250x917.jpg",
-        desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware🔥. CPU max performance via throttlestop. RAM: Free up your RAM by minimizing background processes and enabling memory compression. SSD/HDD: Minimizing disk activity by disabling certain services. Wifi: Enable low-latency and high-bandwidth profile with the device manager. GPU(Intel only): Using Intel graphics command center(BETA)to enable full performance of your graphics."
+        desc: "Advanced registry and system tweaks to squeeze every bit of performance out of your hardware🔥."
     },
     {
         name: "Free up your laptop/Pc storage",
@@ -31,7 +31,7 @@ const items = [
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
-        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz. RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable. Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index. Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft. GPU-Use power saving mode with vendor-specific apps(Intel graphics commmand center...), disable dedicated GPU(if acceptable). NPU-Disable it for better efficiency if you are not using AI features offline at all(If you have one)."
+        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz.          RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable.          Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index.          Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft.          GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable).          NPU-Disable it for better efficiency(If you have one)."
     },
     {
         name: "Add another Operating system to your laptop/Pc",
@@ -96,22 +96,30 @@ function renderItems() {
 function openProduct(name) {
     const item = items.find(i => i.name === name);
     const detailContent = document.getElementById("detailContent");
+    const detailLayer = document.getElementById("detail-layer");
+
     detailContent.innerHTML = `
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; color: #000;">
-            <img src="${item.img}" style="width: 280px; height:200px; object-fit:contain; border-radius: 8px;">
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <img src="${item.img}" style="width: 280px; height:200px; object-fit:contain; border-radius: 8px; background: rgba(255,255,255,0.4); padding: 5px;">
             <div style="flex: 1; min-width: 250px;">
                 <h2>${item.name}</h2>
-                <p style="line-height: 1.5; margin: 12px 0; white-space: pre-wrap;">${item.desc}</p>
-                <h3 style="color: #1a4c9c;">Price: NT$${item.price}</h3>
-                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px;">✨ Add to Cart</button>
+                <p style="line-height: 1.6; margin: 12px 0; white-space: pre-wrap;">${item.desc}</p>
+                <h3>Price: NT$${item.price}</h3>
+                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px; background: linear-gradient(#ffffff, #b2cceb);">✨ Add to Cart</button>
             </div>
         </div>`;
+    
+    // Clear and execute high-performance 3D glass scaling
+    detailLayer.classList.remove("aero-animate-open");
+    void detailLayer.offsetWidth; 
+    detailLayer.classList.add("aero-animate-open");
+    
     showSection('detail-layer');
 }
 
 function closeDetails() { showSection('store-layer'); }
 
-// ================= DUAL SYNC CART SYSTEM WITH FLYING ANIMATION =================
+// ================= DUAL SYNC CART ENGINE + ANIMATIONS =================
 function addToCart(name, price, event) {
     const existing = cart.find(i => i.name === name);
     if (existing) { existing.qty += 1; } else { cart.push({ name, price, qty: 1 }); }
@@ -119,7 +127,7 @@ function addToCart(name, price, event) {
     const sound = document.getElementById("dingSound");
     if (sound) sound.play();
 
-    // Visual Animation Trajectory Setup
+    // Orb Trajectory Processing
     const startX = event ? event.clientX : window.innerWidth / 2;
     const startY = event ? event.clientY : window.innerHeight / 2;
     
@@ -254,10 +262,10 @@ function logout() {
 }
 
 function syncAuthState() {
-    currentUser = localStorage.getItem("aero_logged_in");
     const guestsLinks = document.querySelectorAll(".auth-guest-only");
     const userLinks = document.querySelectorAll(".auth-user-only");
     const statusText = document.getElementById("userStatus");
+    currentUser = localStorage.getItem("aero_logged_in");
 
     if (currentUser) {
         statusText.innerText = `👤 ${currentUser}`;
@@ -280,7 +288,6 @@ function checkout() {
     if (!clientName) return;
 
     const orderDetails = cart.map(i => `${i.name} × ${i.qty} = NT$${i.price * i.qty}`).join("\n");
-
     const overlay = document.getElementById("checkout-overlay");
     const loaderText = document.getElementById("loader-text");
     
