@@ -172,6 +172,22 @@ function removeItem(index) {
     updateCartTotals();
 }
 
+// ================= PERFORMANCE ENGINE LOGIC =================
+function applyTransparencySettings() {
+    const toggle = document.getElementById('transparencyToggle');
+    const statusDisplay = document.getElementById('statusDisplay');
+    
+    if (localStorage.getItem('aeroTransparency') === 'disabled') {
+        if (toggle) toggle.checked = false;
+        document.body.classList.add('disable-transparency');
+        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
+    } else {
+        if (toggle) toggle.checked = true;
+        document.body.classList.remove('disable-transparency');
+        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Enabled';
+    }
+}
+
 function updateCartTotals() {
     total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -324,6 +340,19 @@ window.onload = function() {
     if (savedCart) cart = JSON.parse(savedCart);
     syncAuthState();
     updateCartTotals();
+    applyTransparencySettings();
+    
+    const toggle = document.getElementById('transparencyToggle');
+    if (toggle) {
+        toggle.addEventListener('change', function() {
+            if (!this.checked) {
+                localStorage.setItem('aeroTransparency', 'disabled');
+            } else {
+                localStorage.setItem('aeroTransparency', 'enabled');
+            }
+            applyTransparencySettings();
+        });
+    }
     
     document.getElementById('store-layer').style.display = 'block';
     document.getElementById('itemsContainer').style.display = 'flex';
