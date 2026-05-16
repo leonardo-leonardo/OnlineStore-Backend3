@@ -213,8 +213,8 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 /* ENHANCED LARGER FLYING ORB MATRIX */
 .flying-orb {
     position: fixed;
-    width: 45px;  /* Increased size */
-    height: 45px; /* Increased size */
+    width: 45px;  
+    height: 45px; 
     background: radial-gradient(circle, #00d2ff 20%, #1a4c9c 80%);
     border-radius: 50%;
     box-shadow: 0 0 25px #00d2ff, 0 0 50px #1a4c9c;
