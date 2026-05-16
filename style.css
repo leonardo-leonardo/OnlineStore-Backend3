@@ -333,3 +333,53 @@ button:active, .btn-checkout:active {
 
 .page-section { animation: sectionFade 0.25s ease-out; }
 @keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   AERO GLASS PERFORMANCE ENGINE LAYOUTS
+   ========================================================================== */
+body.disable-transparency {
+    background: #1a4c9c;
+}
+body.disable-transparency .glass,
+body.disable-transparency .navbar,
+body.disable-transparency #taskbar,
+body.disable-transparency #detail-layer {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+body.disable-transparency .glass {
+    background: rgb(240, 240, 240) !important;
+    color: #000 !important;
+}
+body.disable-transparency #taskbar {
+    background: rgb(35, 45, 60) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.disable-transparency .item {
+    background: rgb(245, 245, 245) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* WINDOWS 7 CONTROL ENGINE SLIDER SWITCHES */
+.switch input:checked + .slider {
+    background: linear-gradient(to bottom, #a1e0a1, #cef0ce) !important;
+    border-color: #3b7a3b !important;
+}
+.switch input:checked + .slider:before {
+    transform: translateX(26px);
+    background: linear-gradient(to bottom, #ffffff, #e1f5e1) !important;
+    border-color: #3b7a3b !important;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: linear-gradient(to bottom, #ffffff, #eaeaea);
+    border: 1px solid #707070;
+    border-radius: 2px;
+    transition: .2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
