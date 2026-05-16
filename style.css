@@ -20,27 +20,28 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* HIGH-LEGIBILITY LIGHTENED DETAIL GLASS PANEL WITH DEEPER BLUE TINT */
+/* PREMIUM SLATE / GRAPHITE AERO GLASS LAYER */
 #detail-layer {
     max-width: 900px;
     margin: 20px auto !important;
-    background: rgba(55, 110, 220, 0.45) !important; /* Deepened blue base with high transparency */
-    backdrop-filter: blur(25px) saturate(180%) !important; /* Deeper Aero blur crystallization */
-    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.2);
-    color: #03142e !important; /* Deepest contrast tone for text */
+    background: rgba(35, 45, 60, 0.55) !important; /* Premium Windows 7 Slate Gray glass */
+    backdrop-filter: blur(25px) saturate(140%) !important; /* Deep crystallization blur */
+    -webkit-backdrop-filter: blur(25px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important; /* Shimmering top reflection border */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: #ffffff !important; /* Crisp white text for ultimate readability against dark slate */
 }
 
-/* Ensure child text elements match readable dark blue tone */
+/* Ensure child text elements stay sharp over the dark slate glass */
 #detailContent h2, #detailContent h3 {
-    color: #051d3d !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 #detailContent p {
-    color: #08244c !important;
+    color: #e2e8f0 !important; /* Clean silver-white tone for descriptive text */
     font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* NAVBAR DESIGN */
@@ -150,23 +151,23 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* RE-ENGINEERED HIGH-TRANSPARENCY DARK AERO TASKBAR */
+/* RE-ENGINEERED MATCHING SLATE AERO TASKBAR */
 #taskbar {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(10, 22, 41, 0.55) !important; /* Darker tinted blue-slate glass base */
-    backdrop-filter: blur(25px) saturate(180%) !important; /* Enhanced blur matrix vibrancy */
-    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    background: rgba(25, 33, 44, 0.6) !important; /* Dark matching slate glass */
+    backdrop-filter: blur(25px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
     padding: 12px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #ffffff !important; /* Brilliant contrast text for high readability over dark layout */
+    color: #ffffff !important;
     z-index: 2000;
     box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, 0.35); /* Bright glass edge trim reflection */
-    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Dynamic text structures override for the glass baseline */
@@ -176,7 +177,7 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 #taskbar .taskbar-right {
     color: #ffffff !important;
     font-weight: 600;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
@@ -194,7 +195,7 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .start-btn { 
     font-size: 22px; 
     cursor: pointer; 
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
     transition: transform 0.2s;
 }
 .start-btn:hover { transform: scale(1.1); }
