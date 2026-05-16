@@ -65,8 +65,13 @@ function showSection(sectionId) {
     document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
     const target = document.getElementById(sectionId);
     if (target) target.style.display = 'block';
-    if(sectionId === 'store-layer') {
+    
+    // Crucial: Keep the main grid visible unless viewing cart or login profiles explicitly
+    if (sectionId === 'store-layer') {
+        document.getElementById('itemsContainer').style.display = 'flex';
         document.getElementById('detail-layer').style.display = 'none';
+    } else {
+        document.getElementById('itemsContainer').style.display = 'none';
     }
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -109,7 +114,6 @@ function openProduct(name) {
             </div>
         </div>`;
     
-    // Clear and execute high-performance 3D glass scaling
     detailLayer.classList.remove("aero-animate-open");
     void detailLayer.offsetWidth; 
     detailLayer.classList.add("aero-animate-open");
@@ -127,7 +131,6 @@ function addToCart(name, price, event) {
     const sound = document.getElementById("dingSound");
     if (sound) sound.play();
 
-    // Orb Trajectory Processing
     const startX = event ? event.clientX : window.innerWidth / 2;
     const startY = event ? event.clientY : window.innerHeight / 2;
     
@@ -135,7 +138,6 @@ function addToCart(name, price, event) {
     const targetRect = targetCart.getBoundingClientRect();
     const orb = document.getElementById("flying-orb");
     
-    // Position bigger flying element centered on click
     orb.style.left = `${startX - 22}px`;
     orb.style.top = `${startY - 22}px`;
     orb.style.display = "block";
@@ -144,7 +146,6 @@ function addToCart(name, price, event) {
 
     void orb.offsetWidth; 
 
-    // Animate flow while shrinking into the basket slot
     orb.style.left = `${targetRect.left + (targetRect.width / 2) - 10}px`;
     orb.style.top = `${targetRect.top + 5}px`;
     orb.style.transform = "scale(0.4)";
@@ -181,24 +182,24 @@ function updateCartTotals() {
     
     const detailedList = document.getElementById("detailedCartList");
     if (detailedList) {
-        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#000;'>Your cart is currently empty.</p>" : "";
+        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#ffffff;'>Your cart is currently empty.</p>" : "";
         cart.forEach((item, index) => {
             detailedList.innerHTML += `
-                <div class="cart-item-row">
+                <div class="cart-item-row" style="color: #ffffff;">
                     <span style="font-weight:600; width:40%; text-align:left;">${item.name}</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                        <span class="qty-val">${item.qty}</span>
+                        <span class="qty-val" style="color: #ffffff;">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     </div>
                     <span style="font-weight:600; min-width:80px; text-align:right;">NT$${item.price * item.qty}</span>
-                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:white;">❌</button>
+                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:white; font-weight:bold; border:1px solid #7a0000; box-shadow:0 1px 3px rgba(0,0,0,0.5);">X</button>
                 </div>`;
         });
         document.getElementById("detailedTotal").innerText = total;
         document.getElementById("paymentRule").innerText = total >= 500 ? "Cash Before Delivery" : "Cash Only";
     }
-    saveCart();
+    localStorage.setItem("aero_cart", JSON.stringify(cart));
 }
 
 // ================= PRODUCTION AUTHENTICATION ENGINE =================
@@ -324,5 +325,10 @@ window.onload = function() {
     if (savedCart) cart = JSON.parse(savedCart);
     syncAuthState();
     updateCartTotals();
+    
+    // Force set store view and item display grid visibility parameters explicit
+    document.getElementById('store-layer').style.display = 'block';
+    document.getElementById('itemsContainer').style.display = 'flex';
+    
     renderItems();
 };
