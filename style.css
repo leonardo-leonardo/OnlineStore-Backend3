@@ -150,26 +150,53 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* FIXED RE-ENGINEERED TASKBAR */
+/* RE-ENGINEERED HIGH-TRANSPARENCY AERO TASKBAR */
 #taskbar {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(20, 20, 20, 0.75);
-    backdrop-filter: blur(15px);
+    background: rgba(245, 250, 255, 0.35) !important; /* Frosted light glass tint */
+    backdrop-filter: blur(20px) saturate(160%) !important; /* High-performance blur matrix */
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
     padding: 12px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff;
+    color: #021126 !important; /* Deep dark contrast text for maximum visibility */
     z-index: 2000;
     box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
+
+/* Dynamic text structures override for the glass baseline */
+#taskbar span, 
+#taskbar div, 
+#taskbar .taskbar-left, 
+#taskbar .taskbar-right {
+    color: #021126 !important;
+    font-weight: 600;
+}
+
 .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
-.cart-overview { background: rgba(255, 255, 255, 0.2); padding: 6px 14px; border-radius: 6px; cursor: pointer; }
-.cart-overview:hover { background: rgba(255, 255, 255, 0.3); }
-.start-btn { font-size: 22px; cursor: pointer; }
+
+.cart-overview {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.cart-overview:hover { background: rgba(255, 255, 255, 0.6); transform: translateY(-1px); }
+
+.start-btn { 
+    font-size: 22px; 
+    cursor: pointer; 
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+    transition: transform 0.2s;
+}
+.start-btn:hover { transform: scale(1.1); }
 .auth-msg { margin-top: 10px; font-weight: bold; }
 
 /* ANIMATION FLUID INTERACTIVE TRIGGERS */
