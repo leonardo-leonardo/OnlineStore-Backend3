@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aero Glass Store - Home & Settings</title>
+    <title>Aero Glass Store</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -16,9 +15,7 @@
             transition: background 0.3s;
         }
 
-        /* ==========================================================================
-           PERFORMANCE MODE (OPAQUE OVERRIDES)
-           ========================================================================== */
+        /* OPAQUE PERFORMANCE MODE OVERRIDES */
         body.disable-transparency {
             background: #1a4c9c;
         }
@@ -41,20 +38,8 @@
             background: rgb(35, 45, 60) !important;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        body.disable-transparency .item {
-            background: rgb(245, 245, 245) !important;
-            border-color: rgba(0, 0, 0, 0.15) !important;
-        }
-        body.disable-transparency .setting-row {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        body.disable-transparency .setting-info p {
-            color: #cbd5e1;
-        }
 
-        /* ==========================================================================
-           AERO GLASS CONTAINERS
-           ========================================================================== */
+        /* GENERAL GLASS PANELS */
         .glass {
             backdrop-filter: blur(12px) saturate(120%);
             -webkit-backdrop-filter: blur(12px) saturate(120%);
@@ -66,6 +51,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
+        /* PREMIUM SLATE / GRAPHITE AERO GLASS LAYER */
         #detail-layer {
             max-width: 900px;
             margin: 20px auto !important;
@@ -88,9 +74,76 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        /* ==========================================================================
-           NAVIGATION BAR
-           ========================================================================== */
+        /* SETTINGS SWITCH FORMATTING */
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body.disable-transparency .setting-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .setting-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+        }
+        .setting-info p {
+            margin: 0;
+            font-size: 0.85em;
+            color: #e2e8f0;
+        }
+        body.disable-transparency .setting-info p {
+            color: #cbd5e1;
+        }
+
+        /* AERO STYLE WIN7 TOGGLE SWITCH */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, #cfcfcf, #e5e5e5);
+            border: 1px solid #707070;
+            border-radius: 4px;
+            transition: .2s;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background: linear-gradient(to bottom, #ffffff, #eaeaea);
+            border: 1px solid #707070;
+            border-radius: 2px;
+            transition: .2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        input:checked + .slider {
+            background: linear-gradient(to bottom, #a1e0a1, #cef0ce);
+            border-color: #3b7a3b;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background: linear-gradient(to bottom, #ffffff, #e1f5e1);
+            border-color: #3b7a3b;
+        }
+
+        /* NAVBAR DESIGN */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -119,10 +172,8 @@
             padding: 0;
         }
 
-        /* ==========================================================================
-           WINDOWS 7 BUTTON GLASS & GLOWS (NO TEXT GLOW)
-           ========================================================================== */
-        .nav-links a, .btn-back, .nav-btn {
+        /* WINDOWS 7 INTERACTIVE AERO NAV LINKS & BUTTONS - DEEPER VIBRANT AERO GLOW MATRIX */
+        .nav-links a, .btn-back {
             text-decoration: none;
             color: #000000 !important;
             font-weight: 600;
@@ -135,24 +186,23 @@
             transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            cursor: pointer;
         }
 
-        .nav-links a:hover, .btn-back:hover, .nav-btn:hover {
+        .nav-links a:hover, .btn-back:hover {
             background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(250, 250, 250, 0.8) 51%, rgba(255, 255, 255, 0.95) 100%);
             border: 1px solid rgba(255, 255, 255, 0.95);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 0 28px rgba(255, 255, 255, 1), inset 0 0 12px rgba(255, 255, 255, 0.8);
             transform: translateY(-1px);
         }
 
-        .nav-links a:active, .btn-back:active, .nav-btn:active {
+        .nav-links a:active, .btn-back:active {
             background: linear-gradient(to bottom, rgba(210, 210, 210, 0.85) 0%, rgba(220, 220, 220, 0.75) 50%, rgba(230, 230, 230, 0.8) 100%);
             border: 1px solid rgba(255, 255, 255, 0.7);
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
             transform: translateY(0);
         }
 
-        /* REGISTER BUTTON AURORA BLUE GLOW */
+        /* HIGHLY IMMERSION AERO AURORA GLOW FOR REGISTER */
         .btn-register { 
             background: linear-gradient(to bottom, rgba(0, 220, 255, 0.8) 0%, rgba(0, 190, 240, 0.6) 50%, rgba(0, 170, 230, 0.55) 51%, rgba(0, 220, 255, 0.7) 100%) !important;
             border: 1px solid rgba(0, 230, 255, 0.75) !important;
@@ -164,7 +214,7 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 32px rgba(0, 220, 255, 1), inset 0 0 12px rgba(255, 255, 255, 0.4) !important;
         }
 
-        /* LOGOUT BUTTON RED GLOW */
+        /* HIGHLY IMMERSION AERO AURORA GLOW FOR LOGOUT */
         .btn-logout { 
             background: linear-gradient(to bottom, rgba(255, 100, 100, 0.8) 0%, rgba(240, 80, 80, 0.6) 50%, rgba(225, 60, 60, 0.55) 51%, rgba(255, 100, 100, 0.7) 100%) !important;
             border: 1px solid rgba(255, 110, 110, 0.75) !important;
@@ -176,8 +226,43 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 32px rgba(255, 100, 100, 1), inset 0 0 12px rgba(255, 255, 255, 0.4) !important;
         }
 
-        /* STANDARD BUTTON ENGINE */
-        button, .btn-checkout, .qty-btn {
+        /* INPUT CONTROLS */
+        .search-controls { display: flex; gap: 10px; margin-top: 15px; }
+        #searchBar { flex: 1; padding: 10px; border-radius: 20px; border: none; outline: none; }
+        select { padding: 10px; border-radius: 8px; border: none; background: white; }
+
+        /* PRODUCT RENDERING GRID */
+        #itemsContainer { display: flex; flex-wrap: wrap; justify-content: center; }
+        .item {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px;
+            display: inline-block;
+            color: #000;
+            transition: 0.2s;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .item:hover { transform: scale(1.05); }
+        .item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; }
+
+        /* SEPARATED AUTH CORES */
+        .login-box { max-width: 420px; margin: 60px auto !important; text-align: center; }
+        .login-inputs input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+        .switch-form-text { margin-top: 15px; font-size: 0.9em; }
+        .switch-form-text a { color: #1a4c9c; font-weight: bold; text-decoration: underline; cursor: pointer; }
+
+        /* MAIN CALL TO ACTION / ADD TO CART BUTTONS - RICH NEON RADIANCE */
+        button, .btn-checkout {
             padding: 10px 20px;
             border-radius: 6px;
             cursor: pointer;
@@ -202,85 +287,63 @@
             transform: scale(1) translateY(0);
         }
 
-        /* ==========================================================================
-           MAIN GRID & STOREFRONTS
-           ========================================================================== */
-        .search-controls { display: flex; gap: 10px; margin: 15px 0; }
-        #searchBar { flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc; outline: none; }
-        select { padding: 10px; border-radius: 8px; border: 1px solid #ccc; background: white; }
-
-        #itemsContainer { display: flex; flex-wrap: wrap; justify-content: center; }
-        .item {
-            width: 260px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px;
-            display: inline-block;
-            color: #000;
-            transition: transform 0.2s;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .item:hover { transform: scale(1.05); }
-        .item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; background: #fff; }
-        .item h3 { margin: 12px 0 6px; font-size: 1.2em; }
-        .item p { margin: 6px 0; color: #333; font-size: 0.95em; }
-        .price-tag { font-weight: bold; color: #111; margin: 8px 0; font-size: 1.1em; }
-
-        /* ==========================================================================
-           SETTINGS WORKBENCH UI
-           ========================================================================== */
-        .settings-container { padding: 10px; }
-        .setting-row {
+        /* QUANTITY MANAGEMENT DISPLAY */
+        .cart-item-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
         }
-        .setting-info h4 { margin: 0 0 5px 0; font-size: 1.1em; }
-        .setting-info p { margin: 0; font-size: 0.85em; color: #e2e8f0; }
+        .qty-controls { display: flex; align-items: center; gap: 12px; }
+        .qty-btn { width: 28px; height: 28px; padding: 0 !important; border-radius: 50% !important; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+        .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-        /* WINDOWS 7 CONTROL TOGGLE ENGINE */
-        .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, #cfcfcf, #e5e5e5);
-            border: 1px solid #707070; border-radius: 4px; transition: .2s;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-        }
-        .slider:before {
-            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
-            background: linear-gradient(to bottom, #ffffff, #eaeaea);
-            border: 1px solid #707070; border-radius: 2px; transition: .2s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-        input:checked + .slider { background: linear-gradient(to bottom, #a1e0a1, #cef0ce); border-color: #3b7a3b; }
-        input:checked + .slider:before { transform: translateX(26px); border-color: #3b7a3b; }
-
-        /* ==========================================================================
-           WINDOWS SYSTEM TASKBAR & OVERVIEWS
-           ========================================================================== */
+        /* MATCHING SLATE AERO TASKBAR WITH MAXIMUM TRANSPARENCY */
         #taskbar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background: rgba(25, 33, 44, 0.3) !important; 
             backdrop-filter: blur(25px) saturate(150%) !important;
             -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
-            padding: 12px 25px; display: flex; justify-content: space-between; align-items: center;
-            color: #ffffff !important; z-index: 2000; box-sizing: border-box;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff !important;
+            z-index: 2000;
+            box-sizing: border-box;
             border-top: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
+
+        #taskbar span, 
+        #taskbar div, 
+        #taskbar .taskbar-left, 
+        #taskbar .taskbar-right {
+            color: #ffffff !important;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
         .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
-        
+
+        /* HIGHLY VISIBLE CART BUTTON OVERRIDE */
         .cart-overview {
             background: linear-gradient(rgba(0, 210, 255, 0.25), rgba(26, 76, 156, 0.35)) !important;
             border: 1.5px solid rgba(0, 210, 255, 0.6) !important;
-            padding: 8px 18px; border-radius: 8px; cursor: pointer;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
             box-shadow: 0 0 15px rgba(0, 210, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transition: all 0.2s; display: flex; align-items: center; gap: 6px; color: #fff;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .cart-overview:hover { 
             background: linear-gradient(rgba(0, 210, 255, 0.4), rgba(26, 76, 156, 0.5)) !important;
@@ -288,65 +351,108 @@
             transform: translateY(-2px);
         }
 
-        .view-panel { display: none; }
-        .view-panel.active-view { display: block; }
+        .start-btn { 
+            font-size: 22px; 
+            cursor: pointer; 
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+            transition: transform 0.2s;
+        }
+        .start-btn:hover { transform: scale(1.1); }
+        .auth-msg { margin-top: 10px; font-weight: bold; }
+
+        /* ENHANCED LARGER FLYING ORB MATRIX */
+        .flying-orb {
+            position: fixed;
+            width: 45px;  
+            height: 45px; 
+            background: radial-gradient(circle, #00d2ff 20%, #1a4c9c 80%);
+            border-radius: 50%;
+            box-shadow: 0 0 25px #00d2ff, 0 0 50px #1a4c9c;
+            z-index: 9999;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @keyframes cartBump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); background: linear-gradient(rgba(0, 210, 255, 0.5), rgba(26, 76, 156, 0.6)) !important; }
+            100% { transform: scale(1); }
+        }
+        .cart-bump-active { animation: cartBump 0.3s ease-out; }
+
+        /* WINDOWS 3D OPENING SEQUENCER */
+        .aero-animate-open {
+            animation: aeroOpen 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+            transform-origin: center top;
+        }
+
+        @keyframes aeroOpen {
+            0% {
+                opacity: 0;
+                transform: scale(0.85) perspective(800px) rotateX(-10deg);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) perspective(800px) rotateX(0deg);
+                filter: blur(0);
+            }
+        }
+
+        /* SYSTEM PROCESSING WINDOWS OVERLAY */
+        .checkout-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        .loading-card { text-align: center; width: 340px; padding: 30px !important; }
+        .win7-loader { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; }
+        .win7-loader span {
+            width: 12px;
+            height: 12px;
+            background: #00d2ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00d2ff;
+            animation: win7Dots 1.2s infinite ease-in-out;
+        }
+        .win7-loader span:nth-child(2) { animation-delay: 0.2s; }
+        .win7-loader span:nth-child(3) { animation-delay: 0.4s; }
+        .win7-loader span:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes win7Dots {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+        }
+
+        .page-section { animation: sectionFade 0.25s ease-out; }
+        @keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <nav class="navbar glass">
-        <div class="nav-logo" onclick="switchView('store-view')">Aero Glass Store</div>
-        <ul class="nav-links">
-            <li><div class="nav-btn" onclick="switchView('store-view')">Home</div></li>
-            <li><div class="nav-btn btn-register" onclick="switchView('settings-view')">Settings</div></li>
-        </ul>
-    </nav>
-
-    <div id="store-view" class="view-panel active-view" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        <div class="glass" style="margin-bottom: 20px;">
-            <h2>Aero Glass Store (Windows 7 Style)</h2>
-            <div class="search-controls">
-                <input type="text" id="searchBar" placeholder="Search items...">
-                <select>
-                    <option>All Categories</option>
-                </select>
-            </div>
-        </div>
-
-        <div id="itemsContainer">
-            <div class="item">
-                <img src="https://i.imgur.com/vHtuAor.png" alt="Flappy Bird">
-                <h3>Flappy Bird Game</h3>
-                <p>A classic, easy-to-play side-scroller game. Navigate through the pipes and beat your high score!</p>
-                <div class="price-tag">Price: NT$5</div>
-                <button>✨ Add to Cart</button>
-            </div>
-            <div class="item">
-                <img src="https://i.imgur.com/bJC94Y7.png" alt="Speedometer">
-                <h3>Making Your Laptop/Pc run fastest+Advanced Tweaks 🔥</h3>
-                <div class="price-tag">NT$100</div>
-                <button>Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="settings-view" class="view-panel">
-        <div id="detail-layer" class="glass">
-            <div class="settings-container">
-                <h2>System Settings</h2>
-                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px;">
-                
-                <div class="setting-row">
-                    <div class="setting-info">
-                        <h4>Enable Aero Glass Transparency</h4>
-                        <p>Uses hardware acceleration to blur panels. Turn off to save system graphics assets and increase performance layout speed.</p>
-                    </div>
-                    <div>
-                        <label class="switch">
-                            <input type="checkbox" id="transparencyToggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
+    <div id="detail-layer" class="glass">
+        <div class="settings-container">
+            <h2>System Preferences</h2>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px;">
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h4>Enable Aero Glass Transparency</h4>
+                    <p>Uses hardware acceleration to blur panels. Turn off to save system graphics assets and increase performance layout speed.</p>
+                </div>
+                <div>
+                    <label class="switch">
+                        <input type="checkbox" id="transparencyToggle" checked>
+                        <span class="slider"></span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -354,26 +460,12 @@
 
     <div id="taskbar">
         <div class="taskbar-left">
-            <span style="font-size: 20px; cursor: pointer;">🪟</span>
-            <div id="statusDisplay" style="font-weight: 600;">Aero Mode: Enabled</div>
-        </div>
-        <div class="taskbar-right">
-            <div class="cart-overview">
-                <span>🛒 Items: 0 | Total: NT$ 0</span>
-            </div>
+            <span class="start-btn">🪟</span>
+            <div id="statusDisplay">Aero Mode: Enabled</div>
         </div>
     </div>
 
     <script>
-        // System View Switcher Engine
-        function switchView(viewId) {
-            document.querySelectorAll('.view-panel').forEach(panel => {
-                panel.classList.remove('active-view');
-            });
-            document.getElementById(viewId).classList.add('active-view');
-        }
-
-        // Transparency Control Framework
         const toggle = document.getElementById('transparencyToggle');
         const statusDisplay = document.getElementById('statusDisplay');
 
@@ -381,11 +473,11 @@
             if (localStorage.getItem('aeroTransparency') === 'disabled') {
                 toggle.checked = false;
                 document.body.classList.add('disable-transparency');
-                statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
+                if(statusDisplay) statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
             } else {
                 toggle.checked = true;
                 document.body.classList.remove('disable-transparency');
-                statusDisplay.textContent = 'Aero Mode: Enabled';
+                if(statusDisplay) statusDisplay.textContent = 'Aero Mode: Enabled';
             }
         }
 
@@ -398,7 +490,7 @@
             applyTransparencySettings();
         });
 
-        // Initialize user preferences
+        // Initialize user preferences without altering any other app routines
         applyTransparencySettings();
     </script>
 </body>
