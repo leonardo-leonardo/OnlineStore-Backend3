@@ -135,18 +135,20 @@ function addToCart(name, price, event) {
     const targetRect = targetCart.getBoundingClientRect();
     const orb = document.getElementById("flying-orb");
     
-    orb.style.left = `${startX}px`;
-    orb.style.top = `${startY}px`;
+    // Position bigger flying element centered on click
+    orb.style.left = `${startX - 22}px`;
+    orb.style.top = `${startY - 22}px`;
     orb.style.display = "block";
     orb.style.transform = "scale(1)";
     orb.style.opacity = "1";
 
     void orb.offsetWidth; 
 
-    orb.style.left = `${targetRect.left + 20}px`;
-    orb.style.top = `${targetRect.top + 10}px`;
-    orb.style.transform = "scale(0.3)";
-    orb.style.opacity = "0.2";
+    // Animate flow while shrinking into the basket slot
+    orb.style.left = `${targetRect.left + (targetRect.width / 2) - 10}px`;
+    orb.style.top = `${targetRect.top + 5}px`;
+    orb.style.transform = "scale(0.4)";
+    orb.style.opacity = "0.3";
 
     setTimeout(() => {
         orb.style.display = "none";
@@ -197,10 +199,6 @@ function updateCartTotals() {
         document.getElementById("paymentRule").innerText = total >= 500 ? "Cash Before Delivery" : "Cash Only";
     }
     saveCart();
-}
-
-function saveCart() {
-    localStorage.setItem("aero_cart", JSON.stringify(cart));
 }
 
 // ================= PRODUCTION AUTHENTICATION ENGINE =================
