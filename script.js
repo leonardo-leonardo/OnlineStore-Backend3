@@ -66,7 +66,6 @@ function showSection(sectionId) {
     const target = document.getElementById(sectionId);
     if (target) target.style.display = 'block';
     
-    // Crucial: Keep the main grid visible unless viewing cart or login profiles explicitly
     if (sectionId === 'store-layer') {
         document.getElementById('itemsContainer').style.display = 'flex';
         document.getElementById('detail-layer').style.display = 'none';
@@ -182,18 +181,18 @@ function updateCartTotals() {
     
     const detailedList = document.getElementById("detailedCartList");
     if (detailedList) {
-        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#ffffff;'>Your cart is currently empty.</p>" : "";
+        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#000000;'>Your cart is currently empty.</p>" : "";
         cart.forEach((item, index) => {
             detailedList.innerHTML += `
-                <div class="cart-item-row" style="color: #ffffff;">
-                    <span style="font-weight:600; width:40%; text-align:left;">${item.name}</span>
+                <div class="cart-item-row" style="color: #000000;">
+                    <span style="font-weight:600; width:40%; text-align:left; color: #000000;">${item.name}</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                        <span class="qty-val" style="color: #ffffff;">${item.qty}</span>
+                        <span class="qty-val" style="color: #000000;">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     </div>
-                    <span style="font-weight:600; min-width:80px; text-align:right;">NT$${item.price * item.qty}</span>
-                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:white; font-weight:bold; border:1px solid #7a0000; box-shadow:0 1px 3px rgba(0,0,0,0.5);">X</button>
+                    <span style="font-weight:600; min-width:80px; text-align:right; color: #000000;">NT$${item.price * item.qty}</span>
+                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:#ffffff !important; font-weight:bold; border:1px solid #7a0000; box-shadow:0 1px 3px rgba(0,0,0,0.5);">X</button>
                 </div>`;
         });
         document.getElementById("detailedTotal").innerText = total;
@@ -326,7 +325,6 @@ window.onload = function() {
     syncAuthState();
     updateCartTotals();
     
-    // Force set store view and item display grid visibility parameters explicit
     document.getElementById('store-layer').style.display = 'block';
     document.getElementById('itemsContainer').style.display = 'flex';
     
