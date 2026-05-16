@@ -20,15 +20,15 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* HIGH-LEGIBILITY LIGHTENED DETAIL GLASS PANEL */
+/* HIGH-LEGIBILITY LIGHTENED DETAIL GLASS PANEL WITH DEEPER BLUE TINT */
 #detail-layer {
     max-width: 900px;
     margin: 20px auto !important;
-    background: rgba(240, 246, 255, 0.45) !important; /* Lighter white-blue tint */
-    backdrop-filter: blur(25px) saturate(160%) !important; /* Deeper Aero blur crystallization */
-    -webkit-backdrop-filter: blur(25px) saturate(160%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.65) !important;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.4);
+    background: rgba(55, 110, 220, 0.45) !important; /* Deepened blue base with high transparency */
+    backdrop-filter: blur(25px) saturate(180%) !important; /* Deeper Aero blur crystallization */
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.2);
     color: #03142e !important; /* Deepest contrast tone for text */
 }
 
@@ -155,7 +155,7 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(10, 22, 41, 0.55) !important; /* Slightly darker tinted blue-slate glass base */
+    background: rgba(10, 22, 41, 0.55) !important; /* Darker tinted blue-slate glass base */
     backdrop-filter: blur(25px) saturate(180%) !important; /* Enhanced blur matrix vibrancy */
     -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
     padding: 12px 25px;
