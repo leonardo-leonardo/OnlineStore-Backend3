@@ -151,12 +151,13 @@ button:hover { background: linear-gradient(#e8f0ff, #abbcdb); transform: scale(1
 .qty-btn { width: 28px; height: 28px; padding: 0; border-radius: 50%; font-size: 16px; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* RE-ENGINEERED MATCHING SLATE AERO TASKBAR */
+/* MATCHING SLATE AERO TASKBAR WITH MAXIMUM TRANSPARENCY */
 #taskbar {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(25, 33, 44, 0.6) !important; /* Dark matching slate glass */
+    /* Lowered opacity alpha from 0.6 to 0.3 to maximize transparency */
+    background: rgba(25, 33, 44, 0.3) !important; 
     backdrop-filter: blur(25px) saturate(150%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
     padding: 12px 25px;
