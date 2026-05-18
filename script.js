@@ -109,7 +109,7 @@ function openProduct(name) {
                 <h2>${item.name}</h2>
                 <p style="line-height: 1.6; margin: 12px 0; white-space: pre-wrap;">${item.desc}</p>
                 <h3>Price: NT$${item.price}</h3>
-                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px;">✨ Add to Cart</button>
+                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px; background: linear-gradient(#ffffff, #b2cceb);">✨ Add to Cart</button>
             </div>
         </div>`;
     
@@ -167,85 +167,25 @@ function updateQty(index, offset) {
     updateCartTotals();
 }
 
-// ================= MULTI-THEME ENGINE LOGIC =================
-function applyThemeSettings() {
-    const selector = document.getElementById('themeSelector');
-    const statusDisplay = document.getElementById('statusDisplay');
-    const storeTitle = document.getElementById('store-title');
-    const activeTheme = localStorage.getItem('systemTheme') || 'win7';
-    
-    if (selector) selector.value = activeTheme;
-
-    // Reset base layout flags
-    document.body.classList.remove('theme-no-transparency');
-
-    // Remove all previous layout class flags
-    document.body.classList.remove(
-        'theme-win1', 'theme-win2', 'theme-win30', 'theme-win31', 
-        'theme-win95', 'theme-win98', 'theme-winme', 'theme-win2000', 
-        'theme-winxp', 'theme-winvista', 'theme-win7', 'theme-win8', 
-        'theme-win81', 'theme-win10', 'theme-win11'
-    );
-
-    document.body.classList.add(`theme-${activeTheme}`);
-
-    let themeName = '';
-    let titleName = '';
-
-    // Determine config labels and layout optimization switches
-    switch(activeTheme) {
-        case 'win1': 
-            themeName = 'Windows 1.0 (Retro Mosaic)'; titleName = '📼 Windows 1.0 Tiled Store (1985)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win2': 
-            themeName = 'Windows 2.0 (Overlapping Flat)'; titleName = '🗔 Windows 2.0 Interface Store (1987)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win30': 
-            themeName = 'Windows 3.0 (Program Manager Classic)'; titleName = '💾 Windows 3.0 Standard Store (1990)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win31': 
-            themeName = 'Windows 3.1 (Retro Performance)'; titleName = '💾 Windows 3.1 Performance Store (1992)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win95': 
-            themeName = 'Windows 95 (Classic Taskbar)'; titleName = '📟 Windows 95 Revolution Store (1995)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win98': 
-            themeName = 'Windows 98 (Active Desktop)'; titleName = '🌐 Windows 98 Web-Integrated Store (1998)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'winme': 
-            themeName = 'Windows Me (Millennium Edition)'; titleName = '📀 Windows Me Multimedia Store (2000)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win2000': 
-            themeName = 'Windows 2000 (NT Professional)'; titleName = '💼 Windows 2000 Enterprise Store (2000)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'winxp': 
-            themeName = 'Windows XP (Luna Minimal)'; titleName = '🎈 Windows XP Minimal Store (2001)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'winvista': 
-            themeName = 'Windows Vista (Aero Glass)'; titleName = '🔮 Windows Vista Aero Store (2007)'; break;
-        case 'win7': 
-            themeName = 'Windows 7 (Aero Glass)'; titleName = '🛒 Aero Glass Store (Windows 7 Style)'; break;
-        case 'win8': 
-            themeName = 'Windows 8 (Metro Flat)'; titleName = '🟩 Windows 8 Metro Store (2012)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win81': 
-            themeName = 'Windows 8.1 (Blue Modern)'; titleName = '🏁 Windows 8.1 Core Store (2013)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win10': 
-            themeName = 'Windows 10 (Modern Solid)'; titleName = '💻 Windows 10 Solid Store (2015)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-        case 'win11': 
-            themeName = 'Windows 11 (Fluent Minimal)'; titleName = '✨ Windows 11 Minimal Store (2021)'; 
-            document.body.classList.add('theme-no-transparency'); break;
-    }
-
-    if (statusDisplay) statusDisplay.textContent = `Theme: ${themeName}`;
-    if (storeTitle) storeTitle.textContent = titleName;
-}
-
 function removeItem(index) {
     cart.splice(index, 1);
     updateCartTotals();
+}
+
+// ================= PERFORMANCE ENGINE LOGIC =================
+function applyTransparencySettings() {
+    const toggle = document.getElementById('transparencyToggle');
+    const statusDisplay = document.getElementById('statusDisplay');
+    
+    if (localStorage.getItem('aeroTransparency') === 'disabled') {
+        if (toggle) toggle.checked = false;
+        document.body.classList.add('disable-transparency');
+        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
+    } else {
+        if (toggle) toggle.checked = true;
+        document.body.classList.remove('disable-transparency');
+        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Enabled';
+    }
 }
 
 function updateCartTotals() {
@@ -257,18 +197,18 @@ function updateCartTotals() {
     
     const detailedList = document.getElementById("detailedCartList");
     if (detailedList) {
-        detailedList.innerHTML = cart.length === 0 ? "<div>Your cart is currently empty.</div>" : "";
+        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#000000;'>Your cart is currently empty.</p>" : "";
         cart.forEach((item, index) => {
             detailedList.innerHTML += `
-                <div class="cart-item-row">
-                    <span style="font-weight:600; width:40%; text-align:left;">${item.name}</span>
+                <div class="cart-item-row" style="color: #000000;">
+                    <span style="font-weight:600; width:40%; text-align:left; color: #000000;">${item.name}</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                        <span class="qty-val">${item.qty}</span>
+                        <span class="qty-val" style="color: #000000;">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     </div>
-                    <span style="font-weight:600; min-width:80px; text-align:right;">NT$${item.price * item.qty}</span>
-                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:#ffffff !important; font-weight:bold; border:1px solid #7a0000;">X</button>
+                    <span style="font-weight:600; min-width:80px; text-align:right; color: #000000;">NT$${item.price * item.qty}</span>
+                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:#ffffff !important; font-weight:bold; border:1px solid #7a0000; box-shadow:0 1px 3px rgba(0,0,0,0.5);">X</button>
                 </div>`;
         });
         document.getElementById("detailedTotal").innerText = total;
@@ -305,7 +245,6 @@ function handleRegister(e) {
     }, 1500);
 }
 
-// ================= AUTHENTICATION HANDLERS =================
 function handleLogin(e) {
     e.preventDefault();
     const user = document.getElementById("login-user").value.trim();
@@ -401,13 +340,17 @@ window.onload = function() {
     if (savedCart) cart = JSON.parse(savedCart);
     syncAuthState();
     updateCartTotals();
-    applyThemeSettings();
+    applyTransparencySettings();
     
-    const selector = document.getElementById('themeSelector');
-    if (selector) {
-        selector.addEventListener('change', function() {
-            localStorage.setItem('systemTheme', this.value);
-            applyThemeSettings();
+    const toggle = document.getElementById('transparencyToggle');
+    if (toggle) {
+        toggle.addEventListener('change', function() {
+            if (!this.checked) {
+                localStorage.setItem('aeroTransparency', 'disabled');
+            } else {
+                localStorage.setItem('aeroTransparency', 'enabled');
+            }
+            applyTransparencySettings();
         });
     }
     
