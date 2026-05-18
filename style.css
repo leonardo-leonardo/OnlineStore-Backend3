@@ -138,13 +138,13 @@ select { padding: 10px; border-radius: 8px; border: 1px solid #ccc; background: 
     padding: 15px;
     margin: 15px;
     display: inline-block;
-    color: #000000 !important;
+    color: #333333 !important;
     transition: 0.2s;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.item * { color: #000000 !important; }
+.item h3, .item p, .item span, .item div { color: #333333 !important; }
 .item:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(0,0,0,0.25); }
 .item img { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; }
 
