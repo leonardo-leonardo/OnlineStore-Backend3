@@ -319,6 +319,42 @@ body.theme-no-transparency #detail-layer {
     box-shadow: none !important;
 }
 
+/* --- WINDOWS 1.0 THEME --- */
+body.theme-win1 { background: #000000 !important; color: #ffffff !important; font-family: monospace; }
+body.theme-win1 .glass { background: #000088 !important; border: 3px dashed #00ffff !important; border-radius: 0px !important; color: #ffffff !important; }
+body.theme-win1 .navbar { background: #008888 !important; border-bottom: 4px solid #ffffff !important; border-radius: 0px !important; }
+body.theme-win1 .nav-logo { color: #ffffff !important; }
+body.theme-win1 .nav-links a, body.theme-win1 button, body.theme-win1 .btn-back { background: #000000 !important; color: #00ffff !important; border: 1px solid #ffffff !important; border-radius: 0px !important; box-shadow: none !important; }
+body.theme-win1 .nav-links a:hover, body.theme-win1 button:hover { background: #ffffff !important; color: #000000 !important; }
+body.theme-win1 #taskbar { background: #008888 !important; border-top: 4px solid #ffffff !important; }
+body.theme-win1 #taskbar span, body.theme-win1 #taskbar div { color: #ffffff !important; }
+body.theme-win1 .item { background: #000000 !important; border: 2px solid #ffffff !important; border-radius: 0px !important; color: #ffffff !important; }
+body.theme-win1 .cart-overview { background: #000088 !important; border: 1px solid #00ffff !important; border-radius: 0px !important; }
+body.theme-win1 #detail-layer { background: #000088 !important; border: 4px solid #ffffff !important; border-radius: 0px !important; color: #ffffff !important; }
+body.theme-win1 #detailContent h2, body.theme-win1 #detailContent h3, body.theme-win1 #detailContent p { color: #ffffff !important; }
+
+/* --- WINDOWS 2.0 THEME --- */
+body.theme-win2 { background: #555555 !important; color: #000000 !important; font-family: sans-serif; }
+body.theme-win2 .glass { background: #aaaaaa !important; border: 3px double #000000 !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win2 .navbar { background: #ffffff !important; border-bottom: 2px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win2 .nav-logo { color: #000000 !important; }
+body.theme-win2 .nav-links a, body.theme-win2 button, body.theme-win2 .btn-back { background: #aaaaaa !important; color: #000000 !important; border: 1px solid #000000 !important; border-radius: 0px !important; box-shadow: none !important; }
+body.theme-win2 #taskbar { background: #ffffff !important; border-top: 2px solid #000000 !important; }
+body.theme-win2 #taskbar span, body.theme-win2 #taskbar div { color: #000000 !important; }
+body.theme-win2 .item { background: #ffffff !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win2 .cart-overview { background: #aaaaaa !important; border: 1px solid #000000 !important; }
+body.theme-win2 #detail-layer { background: #ffffff !important; border: 2px solid #000000 !important; color: #000000 !important; }
+
+/* --- WINDOWS 3.0 THEME --- */
+body.theme-win30 { background: #404040 !important; color: #000000 !important; }
+body.theme-win30 .glass { background: #c0c0c0 !important; border: 2px solid #000000 !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win30 .navbar { background: #808080 !important; border-bottom: 2px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win30 .nav-logo { color: #ffffff !important; }
+body.theme-win30 .nav-links a, body.theme-win30 button, body.theme-win30 .btn-back { background: #c0c0c0 !important; color: #000000 !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win30 #taskbar { background: #808080 !important; border-top: 2px solid #000000 !important; }
+body.theme-win30 #taskbar span, body.theme-win30 #taskbar div { color: #ffffff !important; }
+body.theme-win30 .item { background: #ffffff !important; border: 1px solid #808080 !important; }
+
 /* --- WINDOWS 3.1 THEME --- */
 body.theme-win31 { background: #008080 !important; color: #000000 !important; font-family: 'MS Sans Serif', monospace, sans-serif; }
 body.theme-win31 .glass { background: #ffffff !important; border: 2px solid #000000 !important; border-radius: 0px !important; padding: 15px; color: #000000 !important; }
@@ -327,12 +363,53 @@ body.theme-win31 .nav-logo { color: #000000 !important; font-weight: bold; }
 body.theme-win31 .nav-links a, body.theme-win31 button, body.theme-win31 .btn-back { background: #c0c0c0 !important; color: #000000 !important; border: 2px solid !important; border-color: #fff #808080 #808080 #fff !important; border-radius: 0px !important; box-shadow: none !important; font-weight: bold; }
 body.theme-win31 button:hover, body.theme-win31 .nav-links a:hover { background: #e0e0e0 !important; }
 body.theme-win31 #taskbar { background: #c0c0c0 !important; border-top: 3px solid #000000 !important; }
-body.theme-win31 #taskbar span, body.theme-win31 #taskbar div { color: #000000 !important; font-family: monospace; }
+body.theme-win31 #taskbar span, body.theme-win31 #taskbar div { color: #000000 !important; }
 body.theme-win31 .item { background: #ffffff !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
 body.theme-win31 .cart-overview { background: #000080 !important; color: #ffffff !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
 body.theme-win31 .cart-overview span { color: #ffffff !important; }
 body.theme-win31 #detail-layer { background: #ffffff !important; border: 3px solid #000080 !important; color: #000000 !important; }
 body.theme-win31 #detailContent h2, body.theme-win31 #detailContent h3, body.theme-win31 #detailContent p { color: #000000 !important; text-shadow: none !important; }
+
+/* --- WINDOWS 95 THEME --- */
+body.theme-win95 { background: #55aaaa !important; color: #000000 !important; }
+body.theme-win95 .glass { background: #c0c0c0 !important; border: 2px solid !important; border-color: #fff #808080 #808080 #fff !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win95 .navbar { background: #c0c0c0 !important; border-bottom: 2px solid #808080 !important; border-radius: 0px !important; }
+body.theme-win95 .nav-logo { color: #000000 !important; }
+body.theme-win95 .nav-links a, body.theme-win95 button, body.theme-win95 .btn-back { background: #c0c0c0 !important; color: #000000 !important; border: 2px solid !important; border-color: #fff #808080 #808080 #fff !important; border-radius: 0px !important; }
+body.theme-win95 #taskbar { background: #c0c0c0 !important; border-top: 2px solid #ffffff !important; }
+body.theme-win95 #taskbar span, body.theme-win95 #taskbar div { color: #000000 !important; }
+body.theme-win95 .item { background: #dfdfdf !important; border: 2px solid !important; border-color: #fff #808080 #808080 #fff !important; }
+
+/* --- WINDOWS 98 THEME --- */
+body.theme-win98 { background: #008080 !important; color: #000000 !important; }
+body.theme-win98 .glass { background: #d6d3ce !important; border: 2px solid !important; border-color: #fff #404040 #404040 #fff !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win98 .navbar { background: linear-gradient(90deg, #000080, #1084d0) !important; border-radius: 0px !important; }
+body.theme-win98 .nav-logo { color: #ffffff !important; }
+body.theme-win98 .nav-links a { color: #ffffff !important; background: transparent !important; border: none !important; }
+body.theme-win98 button, body.theme-win98 .btn-back { background: #d6d3ce !important; border: 2px solid !important; border-color: #fff #404040 #404040 #fff !important; color: #000000 !important; }
+body.theme-win98 #taskbar { background: #d6d3ce !important; border-top: 2px solid #ffffff !important; }
+body.theme-win98 #taskbar span, body.theme-win98 #taskbar div { color: #000000 !important; }
+body.theme-win98 .item { background: #f3f2f0 !important; border: 1px solid #404040 !important; }
+
+/* --- WINDOWS ME THEME --- */
+body.theme-winme { background: #0080c0 !important; color: #000000 !important; }
+body.theme-winme .glass { background: #dedad6 !important; border: 2px solid #848284 !important; border-radius: 4px !important; color: #000000 !important; }
+body.theme-winme .navbar { background: linear-gradient(to right, #0a246a, #a6caf0) !important; border-radius: 0px !important; }
+body.theme-winme .nav-logo { color: #ffffff !important; }
+body.theme-winme button, body.theme-winme .btn-back { background: #dedad6 !important; border: 2px solid !important; border-color: #fff #707070 #707070 #fff !important; }
+body.theme-winme #taskbar { background: #dedad6 !important; border-top: 2px solid #ffffff !important; }
+body.theme-winme #taskbar span, body.theme-winme #taskbar div { color: #000000 !important; }
+body.theme-winme .item { background: #ffffff !important; border: 1px solid #848284 !important; }
+
+/* --- WINDOWS 2000 THEME --- */
+body.theme-win2000 { background: #3b5e94 !important; color: #000000 !important; }
+body.theme-win2000 .glass { background: #ece9d8 !important; border: 2px solid #7f9db9 !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win2000 .navbar { background: #ece9d8 !important; border-bottom: 2px solid #7f9db9 !important; border-radius: 0px !important; }
+body.theme-win2000 .nav-logo { color: #000000 !important; }
+body.theme-win2000 button, body.theme-win2000 .btn-back { background: #ece9d8 !important; border: 1px solid #7f9db9 !important; color: #000000 !important; }
+body.theme-win2000 #taskbar { background: #ece9d8 !important; border-top: 2px solid #ffffff !important; }
+body.theme-win2000 #taskbar span, body.theme-win2000 #taskbar div { color: #000000 !important; }
+body.theme-win2000 .item { background: #ffffff !important; border: 1px solid #d2cfbb !important; }
 
 /* --- WINDOWS XP THEME --- */
 body.theme-winxp { background: #245dd7 !important; color: #000000 !important; }
@@ -347,6 +424,18 @@ body.theme-winxp .cart-overview { background: linear-gradient(to bottom, #44c644
 body.theme-winxp #detail-layer { background: #ffffff !important; border: 3px solid #0058e6 !important; border-radius: 5px 5px 0 0 !important; color: #000000 !important; }
 body.theme-winxp #detailContent h2, body.theme-winxp #detailContent h3, body.theme-winxp #detailContent p { color: #000000 !important; text-shadow: none !important; }
 
+/* --- WINDOWS VISTA THEME --- */
+body.theme-winvista { background: linear-gradient(135deg, #162a45, #0c121a) !important; color: #ffffff !important; }
+body.theme-winvista .glass { background: rgba(0, 0, 0, 0.65) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; border-radius: 8px !important; color: #ffffff !important; }
+body.theme-winvista .navbar { background: rgba(10, 15, 25, 0.8) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important; border-radius: 0px !important; }
+body.theme-winvista .nav-logo { color: #ffffff !important; }
+body.theme-winvista .nav-links a, body.theme-winvista button, body.theme-winvista .btn-back { background: rgba(50, 60, 75, 0.8) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.3) !important; }
+body.theme-winvista #taskbar { background: rgba(0, 0, 0, 0.8) !important; border-top: 1px solid rgba(255, 255, 255, 0.2) !important; }
+body.theme-winvista #taskbar span, body.theme-winvista #taskbar div { color: #ffffff !important; }
+body.theme-winvista .item { background: rgba(255, 255, 255, 0.9) !important; color: #000000 !important; border-radius: 6px !important; }
+body.theme-winvista .cart-overview { background: rgba(0, 120, 215, 0.5) !important; }
+body.theme-winvista h4, body.theme-winvista p, body.theme-winvista h2, body.theme-winvista h3 { color: #ffffff !important; }
+
 /* --- WINDOWS 8 THEME --- */
 body.theme-win8 { background: #0078d7 !important; color: #ffffff !important; }
 body.theme-win8 .glass { background: #ffffff !important; border: none !important; border-radius: 0px !important; color: #000000 !important; }
@@ -359,6 +448,15 @@ body.theme-win8 .item { background: #e6e6e6 !important; border: none !important;
 body.theme-win8 .cart-overview { background: #2672ec !important; border: none !important; border-radius: 0px !important; }
 body.theme-win8 #detail-layer { background: #ffffff !important; border: none !important; border-radius: 0px !important; color: #000000 !important; }
 body.theme-win8 #detailContent h2, body.theme-win8 #detailContent h3, body.theme-win8 #detailContent p { color: #000000 !important; text-shadow: none !important; }
+
+/* --- WINDOWS 8.1 THEME --- */
+body.theme-win81 { background: #6c227e !important; color: #ffffff !important; }
+body.theme-win81 .glass { background: #ffffff !important; border: 2px solid #51185e !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win81 .navbar { background: #51185e !important; border-radius: 0px !important; }
+body.theme-win81 .nav-logo { color: #ffffff !important; }
+body.theme-win81 button, body.theme-win81 .btn-back { background: #6c227e !important; color: #ffffff !important; border: none !important; }
+body.theme-win81 #taskbar { background: #000000 !important; }
+body.theme-win81 .item { background: #f2f2f2 !important; border-radius: 0px !important; }
 
 /* --- WINDOWS 10 THEME --- */
 body.theme-win10 { background: #101010 !important; color: #ffffff !important; }
