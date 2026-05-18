@@ -167,11 +167,6 @@ function updateQty(index, offset) {
     updateCartTotals();
 }
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    updateCartTotals();
-}
-
 // ================= MULTI-THEME ENGINE LOGIC =================
 function applyThemeSettings() {
     const selector = document.getElementById('themeSelector');
@@ -196,13 +191,12 @@ function applyThemeSettings() {
 
     let themeName = '';
     let titleName = '';
-    let textColor = '#000000'; // Default light theme text color
 
-    // Determine contrast flags and details
+    // Determine config labels and layout optimization switches
     switch(activeTheme) {
         case 'win1': 
             themeName = 'Windows 1.0 (Retro Mosaic)'; titleName = '📼 Windows 1.0 Tiled Store (1985)'; 
-            textColor = '#ffffff'; document.body.classList.add('theme-no-transparency'); break;
+            document.body.classList.add('theme-no-transparency'); break;
         case 'win2': 
             themeName = 'Windows 2.0 (Overlapping Flat)'; titleName = '🗔 Windows 2.0 Interface Store (1987)'; 
             document.body.classList.add('theme-no-transparency'); break;
@@ -228,8 +222,7 @@ function applyThemeSettings() {
             themeName = 'Windows XP (Luna Minimal)'; titleName = '🎈 Windows XP Minimal Store (2001)'; 
             document.body.classList.add('theme-no-transparency'); break;
         case 'winvista': 
-            themeName = 'Windows Vista (Aero Glass)'; titleName = '🔮 Windows Vista Aero Store (2007)'; 
-            textColor = '#ffffff'; break; // Has transparency but uses dark layers
+            themeName = 'Windows Vista (Aero Glass)'; titleName = '🔮 Windows Vista Aero Store (2007)'; break;
         case 'win7': 
             themeName = 'Windows 7 (Aero Glass)'; titleName = '🛒 Aero Glass Store (Windows 7 Style)'; break;
         case 'win8': 
@@ -237,20 +230,22 @@ function applyThemeSettings() {
             document.body.classList.add('theme-no-transparency'); break;
         case 'win81': 
             themeName = 'Windows 8.1 (Blue Modern)'; titleName = '🏁 Windows 8.1 Core Store (2013)'; 
-            textColor = '#ffffff'; document.body.classList.add('theme-no-transparency'); break;
+            document.body.classList.add('theme-no-transparency'); break;
         case 'win10': 
             themeName = 'Windows 10 (Modern Solid)'; titleName = '💻 Windows 10 Solid Store (2015)'; 
-            textColor = '#ffffff'; document.body.classList.add('theme-no-transparency'); break;
+            document.body.classList.add('theme-no-transparency'); break;
         case 'win11': 
             themeName = 'Windows 11 (Fluent Minimal)'; titleName = '✨ Windows 11 Minimal Store (2021)'; 
-            textColor = '#ffffff'; document.body.classList.add('theme-no-transparency'); break;
+            document.body.classList.add('theme-no-transparency'); break;
     }
-
-    // Apply smart contrast text property variables globally
-    document.documentElement.style.setProperty('--text-contrast', textColor);
 
     if (statusDisplay) statusDisplay.textContent = `Theme: ${themeName}`;
     if (storeTitle) storeTitle.textContent = titleName;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartTotals();
 }
 
 function updateCartTotals() {
