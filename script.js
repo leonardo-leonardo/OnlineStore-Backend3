@@ -109,7 +109,7 @@ function openProduct(name) {
                 <h2>${item.name}</h2>
                 <p style="line-height: 1.6; margin: 12px 0; white-space: pre-wrap;">${item.desc}</p>
                 <h3>Price: NT$${item.price}</h3>
-                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px; background: linear-gradient(#ffffff, #b2cceb);">✨ Add to Cart</button>
+                <button onclick="addToCart(\`${item.name}\`, ${item.price}, event)" style="margin-top:15px;">✨ Add to Cart</button>
             </div>
         </div>`;
     
@@ -172,19 +172,46 @@ function removeItem(index) {
     updateCartTotals();
 }
 
-// ================= PERFORMANCE ENGINE LOGIC =================
-function applyTransparencySettings() {
-    const toggle = document.getElementById('transparencyToggle');
+// ================= MULTI-THEME ENGINE LOGIC =================
+function applyThemeSettings() {
+    const selector = document.getElementById('themeSelector');
     const statusDisplay = document.getElementById('statusDisplay');
+    const storeTitle = document.getElementById('store-title');
+    const activeTheme = localStorage.getItem('systemTheme') || 'win7';
     
-    if (localStorage.getItem('aeroTransparency') === 'disabled') {
-        if (toggle) toggle.checked = false;
-        document.body.classList.add('disable-transparency');
-        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
+    if (selector) selector.value = activeTheme;
+
+    // Remove all previous theme classes
+    document.body.classList.remove(
+        'theme-no-transparency', 
+        'theme-win7', 
+        'theme-win31', 
+        'theme-winxp', 
+        'theme-win8', 
+        'theme-win10', 
+        'theme-win11'
+    );
+
+    // Apply mappings based on selections
+    if (activeTheme === 'win7') {
+        document.body.classList.add('theme-win7');
+        if (statusDisplay) statusDisplay.textContent = 'Theme: Windows 7 (Aero Glass)';
+        if (storeTitle) storeTitle.textContent = '🛒 Aero Glass Store (Windows 7 Style)';
     } else {
-        if (toggle) toggle.checked = true;
-        document.body.classList.remove('disable-transparency');
-        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Enabled';
+        // All other themes disable aero transparency layers completely
+        document.body.classList.add('theme-no-transparency', `theme-${activeTheme}`);
+        
+        let themeName = '';
+        let titleName = '';
+        switch(activeTheme) {
+            case 'win31': themeName = 'Windows 3.1 (Retro Performance)'; titleName = '💾 Windows 3.1 Performance Store'; break;
+            case 'winxp': themeName = 'Windows XP (Luna Minimal)'; titleName = '🎈 Windows XP Minimal Store'; break;
+            case 'win8': themeName = 'Windows 8 (Metro Flat)'; titleName = '🟩 Windows 8 Metro Store'; break;
+            case 'win10': themeName = 'Windows 10 (Modern Solid)'; titleName = '💻 Windows 10 Solid Store'; break;
+            case 'win11': themeName = 'Windows 11 (Fluent Minimal)'; titleName = '✨ Windows 11 Minimal Store'; break;
+        }
+        if (statusDisplay) statusDisplay.textContent = `Theme: ${themeName}`;
+        if (storeTitle) storeTitle.textContent = titleName;
     }
 }
 
@@ -197,18 +224,18 @@ function updateCartTotals() {
     
     const detailedList = document.getElementById("detailedCartList");
     if (detailedList) {
-        detailedList.innerHTML = cart.length === 0 ? "<p style='color:#000000;'>Your cart is currently empty.</p>" : "";
+        detailedList.innerHTML = cart.length === 0 ? "<div>Your cart is currently empty.</div>" : "";
         cart.forEach((item, index) => {
             detailedList.innerHTML += `
-                <div class="cart-item-row" style="color: #000000;">
-                    <span style="font-weight:600; width:40%; text-align:left; color: #000000;">${item.name}</span>
+                <div class="cart-item-row">
+                    <span style="font-weight:600; width:40%; text-align:left;">${item.name}</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                        <span class="qty-val" style="color: #000000;">${item.qty}</span>
+                        <span class="qty-val">${item.qty}</span>
                         <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     </div>
-                    <span style="font-weight:600; min-width:80px; text-align:right; color: #000000;">NT$${item.price * item.qty}</span>
-                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:#ffffff !important; font-weight:bold; border:1px solid #7a0000; box-shadow:0 1px 3px rgba(0,0,0,0.5);">X</button>
+                    <span style="font-weight:600; min-width:80px; text-align:right;">NT$${item.price * item.qty}</span>
+                    <button onclick="removeItem(${index})" style="background:linear-gradient(#ff9999, #cc0000); color:#ffffff !important; font-weight:bold; border:1px solid #7a0000;">X</button>
                 </div>`;
         });
         document.getElementById("detailedTotal").innerText = total;
@@ -340,17 +367,13 @@ window.onload = function() {
     if (savedCart) cart = JSON.parse(savedCart);
     syncAuthState();
     updateCartTotals();
-    applyTransparencySettings();
+    applyThemeSettings();
     
-    const toggle = document.getElementById('transparencyToggle');
-    if (toggle) {
-        toggle.addEventListener('change', function() {
-            if (!this.checked) {
-                localStorage.setItem('aeroTransparency', 'disabled');
-            } else {
-                localStorage.setItem('aeroTransparency', 'enabled');
-            }
-            applyTransparencySettings();
+    const selector = document.getElementById('themeSelector');
+    if (selector) {
+        selector.addEventListener('change', function() {
+            localStorage.setItem('systemTheme', this.value);
+            applyThemeSettings();
         });
     }
     
