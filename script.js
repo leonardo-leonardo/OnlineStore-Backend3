@@ -184,31 +184,47 @@ function applyThemeSettings() {
     // Remove all previous theme classes
     document.body.classList.remove(
         'theme-no-transparency', 
-        'theme-win7', 
+        'theme-win1',
+        'theme-win2',
+        'theme-win30',
         'theme-win31', 
+        'theme-win95',
+        'theme-win98',
+        'theme-winme',
+        'theme-win2000',
         'theme-winxp', 
+        'theme-winvista',
+        'theme-win7', 
         'theme-win8', 
+        'theme-win81',
         'theme-win10', 
         'theme-win11'
     );
 
-    // Apply mappings based on selections
     if (activeTheme === 'win7') {
         document.body.classList.add('theme-win7');
         if (statusDisplay) statusDisplay.textContent = 'Theme: Windows 7 (Aero Glass)';
         if (storeTitle) storeTitle.textContent = '🛒 Aero Glass Store (Windows 7 Style)';
     } else {
-        // All other themes disable aero transparency layers completely
         document.body.classList.add('theme-no-transparency', `theme-${activeTheme}`);
         
         let themeName = '';
         let titleName = '';
         switch(activeTheme) {
-            case 'win31': themeName = 'Windows 3.1 (Retro Performance)'; titleName = '💾 Windows 3.1 Performance Store'; break;
-            case 'winxp': themeName = 'Windows XP (Luna Minimal)'; titleName = '🎈 Windows XP Minimal Store'; break;
-            case 'win8': themeName = 'Windows 8 (Metro Flat)'; titleName = '🟩 Windows 8 Metro Store'; break;
-            case 'win10': themeName = 'Windows 10 (Modern Solid)'; titleName = '💻 Windows 10 Solid Store'; break;
-            case 'win11': themeName = 'Windows 11 (Fluent Minimal)'; titleName = '✨ Windows 11 Minimal Store'; break;
+            case 'win1': themeName = 'Windows 1.0 (Retro Mosaic)'; titleName = '📼 Windows 1.0 Tiled Store (1985)'; break;
+            case 'win2': themeName = 'Windows 2.0 (Overlapping Flat)'; titleName = '🗔 Windows 2.0 Interface Store (1987)'; break;
+            case 'win30': themeName = 'Windows 3.0 (Program Manager Classic)'; titleName = '💾 Windows 3.0 Standard Store (1990)'; break;
+            case 'win31': themeName = 'Windows 3.1 (Retro Performance)'; titleName = '💾 Windows 3.1 Performance Store (1992)'; break;
+            case 'win95': themeName = 'Windows 95 (Classic Taskbar)'; titleName = '📟 Windows 95 Revolution Store (1995)'; break;
+            case 'win98': themeName = 'Windows 98 (Active Desktop)'; titleName = '🌐 Windows 98 Web-Integrated Store (1998)'; break;
+            case 'winme': themeName = 'Windows Me (Millennium Edition)'; titleName = '📀 Windows Me Multimedia Store (2000)'; break;
+            case 'win2000': themeName = 'Windows 2000 (NT Professional)'; titleName = '💼 Windows 2000 Enterprise Store (2000)'; break;
+            case 'winxp': themeName = 'Windows XP (Luna Minimal)'; titleName = '🎈 Windows XP Minimal Store (2001)'; break;
+            case 'winvista': themeName = 'Windows Vista (Basic Solid)'; titleName = '🔮 Windows Vista Standard Store (2007)'; break;
+            case 'win8': themeName = 'Windows 8 (Metro Flat)'; titleName = '🟩 Windows 8 Metro Store (2012)'; break;
+            case 'win81': themeName = 'Windows 8.1 (Blue Modern)'; titleName = '🏁 Windows 8.1 Core Store (2013)'; break;
+            case 'win10': themeName = 'Windows 10 (Modern Solid)'; titleName = '💻 Windows 10 Solid Store (2015)'; break;
+            case 'win11': themeName = 'Windows 11 (Fluent Minimal)'; titleName = '✨ Windows 11 Minimal Store (2021)'; break;
         }
         if (statusDisplay) statusDisplay.textContent = `Theme: ${themeName}`;
         if (storeTitle) storeTitle.textContent = titleName;
@@ -272,6 +288,7 @@ function handleRegister(e) {
     }, 1500);
 }
 
+// ================= AUTHENTICATION HANDLERS =================
 function handleLogin(e) {
     e.preventDefault();
     const user = document.getElementById("login-user").value.trim();
