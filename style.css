@@ -72,7 +72,7 @@ body {
     padding: 0;
 }
 
-/* WINDOWS 7 INTERACTIVE AERO NAV LINKS & BUTTONS - DEEPER VIBRANT AERO GLOW MATRIX */
+/* WINDOWS 7 INTERACTIVE AERO NAV LINKS & BUTTONS */
 .nav-links a, .btn-back {
     text-decoration: none;
     color: #000000 !important;
@@ -102,7 +102,6 @@ body {
     transform: translateY(0);
 }
 
-/* HIGHLY IMMERSION AERO AURORA GLOW FOR REGISTER */
 .btn-register { 
     background: linear-gradient(to bottom, rgba(0, 220, 255, 0.8) 0%, rgba(0, 190, 240, 0.6) 50%, rgba(0, 170, 230, 0.55) 51%, rgba(0, 220, 255, 0.7) 100%) !important;
     border: 1px solid rgba(0, 230, 255, 0.75) !important;
@@ -114,7 +113,6 @@ body {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 32px rgba(0, 220, 255, 1), inset 0 0 12px rgba(255, 255, 255, 0.4) !important;
 }
 
-/* HIGHLY IMMERSION AERO AURORA GLOW FOR LOGOUT */
 .btn-logout { 
     background: linear-gradient(to bottom, rgba(255, 100, 100, 0.8) 0%, rgba(240, 80, 80, 0.6) 50%, rgba(225, 60, 60, 0.55) 51%, rgba(255, 100, 100, 0.7) 100%) !important;
     border: 1px solid rgba(255, 110, 110, 0.75) !important;
@@ -161,7 +159,7 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
 .switch-form-text { margin-top: 15px; font-size: 0.9em; }
 .switch-form-text a { color: #1a4c9c; font-weight: bold; text-decoration: underline; cursor: pointer; }
 
-/* MAIN CALL TO ACTION / ADD TO CART BUTTONS - RICH NEON RADIANCE */
+/* MAIN CALL TO ACTION / ADD TO CART BUTTONS */
 button, .btn-checkout {
     padding: 10px 20px;
     border-radius: 6px;
@@ -180,12 +178,6 @@ button:hover, .btn-checkout:hover {
     box-shadow: inset 0 1px 0 #ffffff, 0 0 24px rgba(160, 205, 255, 1), inset 0 0 10px rgba(255, 255, 255, 0.6);
     transform: scale(1.02) translateY(-1px); 
 }
-button:active, .btn-checkout:active {
-    background: linear-gradient(to bottom, #e1e9f2 0%, #cbd9ea 100%);
-    border: 1px solid #5a82b1;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), 0 0 6px rgba(160, 205, 255, 0.5);
-    transform: scale(1) translateY(0);
-}
 
 /* QUANTITY MANAGEMENT DISPLAY */
 .cart-item-row {
@@ -201,7 +193,7 @@ button:active, .btn-checkout:active {
 .qty-btn { width: 28px; height: 28px; padding: 0 !important; border-radius: 50% !important; font-size: 16px; display: flex; align-items: center; justify-content: center; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* MATCHING SLATE AERO TASKBAR WITH MAXIMUM TRANSPARENCY */
+/* TASKBAR */
 #taskbar {
     position: fixed;
     bottom: 0;
@@ -220,18 +212,13 @@ button:active, .btn-checkout:active {
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-#taskbar span, 
-#taskbar div, 
-#taskbar .taskbar-left, 
-#taskbar .taskbar-right {
+#taskbar span, #taskbar div, #taskbar .taskbar-left, #taskbar .taskbar-right {
     color: #ffffff !important;
     font-weight: 600;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
-
 .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
 
-/* HIGHLY VISIBLE CART BUTTON OVERRIDE */
 .cart-overview {
     background: linear-gradient(rgba(0, 210, 255, 0.25), rgba(26, 76, 156, 0.35)) !important;
     border: 1.5px solid rgba(0, 210, 255, 0.6) !important;
@@ -250,16 +237,10 @@ button:active, .btn-checkout:active {
     transform: translateY(-2px);
 }
 
-.start-btn { 
-    font-size: 22px; 
-    cursor: pointer; 
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
-    transition: transform 0.2s;
-}
+.start-btn { font-size: 22px; cursor: pointer; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)); transition: transform 0.2s; }
 .start-btn:hover { transform: scale(1.1); }
 .auth-msg { margin-top: 10px; font-weight: bold; }
 
-/* ENHANCED LARGER FLYING ORB MATRIX */
 .flying-orb {
     position: fixed;
     width: 45px;  
@@ -274,31 +255,20 @@ button:active, .btn-checkout:active {
 
 @keyframes cartBump {
     0% { transform: scale(1); }
-    50% { transform: scale(1.3); background: linear-gradient(rgba(0, 210, 255, 0.5), rgba(26, 76, 156, 0.6)) !important; }
+    50% { transform: scale(1.3); }
     100% { transform: scale(1); }
 }
 .cart-bump-active { animation: cartBump 0.3s ease-out; }
 
-/* WINDOWS 3D OPENING SEQUENCER */
 .aero-animate-open {
     animation: aeroOpen 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
     transform-origin: center top;
 }
-
 @keyframes aeroOpen {
-    0% {
-        opacity: 0;
-        transform: scale(0.85) perspective(800px) rotateX(-10deg);
-        filter: blur(4px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) perspective(800px) rotateX(0deg);
-        filter: blur(0);
-    }
+    0% { opacity: 0; transform: scale(0.85) perspective(800px) rotateX(-10deg); filter: blur(4px); }
+    100% { opacity: 1; transform: scale(1) perspective(800px) rotateX(0deg); filter: blur(0); }
 }
 
-/* SYSTEM PROCESSING WINDOWS OVERLAY */
 .checkout-overlay {
     position: fixed;
     top: 0;
@@ -334,52 +304,87 @@ button:active, .btn-checkout:active {
 .page-section { animation: sectionFade 0.25s ease-out; }
 @keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
+
 /* ==========================================================================
-   AERO GLASS PERFORMANCE ENGINE LAYOUTS
+   MINIMAL PERFORMANCE THEMES ENGINE LAYOUTS (NO TRANSPARENCY / SOLID RENDERS)
    ========================================================================== */
-body.disable-transparency {
-    background: #1a4c9c;
-}
-body.disable-transparency .glass,
-body.disable-transparency .navbar,
-body.disable-transparency #taskbar,
-body.disable-transparency #detail-layer {
+
+body.theme-no-transparency .glass,
+body.theme-no-transparency .navbar,
+body.theme-no-transparency #taskbar,
+body.theme-no-transparency #detail-layer {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-}
-body.disable-transparency .glass {
-    background: rgb(240, 240, 240) !important;
-    color: #000 !important;
-}
-body.disable-transparency #taskbar {
-    background: rgb(35, 45, 60) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-body.disable-transparency .item {
-    background: rgb(245, 245, 245) !important;
-    border-color: rgba(0, 0, 0, 0.15) !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
 }
 
-/* WINDOWS 7 CONTROL ENGINE SLIDER SWITCHES */
-.switch input:checked + .slider {
-    background: linear-gradient(to bottom, #a1e0a1, #cef0ce) !important;
-    border-color: #3b7a3b !important;
-}
-.switch input:checked + .slider:before {
-    transform: translateX(26px);
-    background: linear-gradient(to bottom, #ffffff, #e1f5e1) !important;
-    border-color: #3b7a3b !important;
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 3px;
-    background: linear-gradient(to bottom, #ffffff, #eaeaea);
-    border: 1px solid #707070;
-    border-radius: 2px;
-    transition: .2s;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
+/* --- WINDOWS 3.1 THEME --- */
+body.theme-win31 { background: #008080 !important; color: #000000 !important; font-family: 'MS Sans Serif', monospace, sans-serif; }
+body.theme-win31 .glass { background: #ffffff !important; border: 2px solid #000000 !important; border-radius: 0px !important; padding: 15px; color: #000000 !important; }
+body.theme-win31 .navbar { background: #c0c0c0 !important; border-bottom: 3px double #000000 !important; border-radius: 0px !important; }
+body.theme-win31 .nav-logo { color: #000000 !important; font-weight: bold; }
+body.theme-win31 .nav-links a, body.theme-win31 button, body.theme-win31 .btn-back { background: #c0c0c0 !important; color: #000000 !important; border: 2px solid !important; border-color: #fff #808080 #808080 #fff !important; border-radius: 0px !important; box-shadow: none !important; font-weight: bold; }
+body.theme-win31 button:hover, body.theme-win31 .nav-links a:hover { background: #e0e0e0 !important; }
+body.theme-win31 #taskbar { background: #c0c0c0 !important; border-top: 3px solid #000000 !important; }
+body.theme-win31 #taskbar span, body.theme-win31 #taskbar div { color: #000000 !important; font-family: monospace; }
+body.theme-win31 .item { background: #ffffff !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win31 .cart-overview { background: #000080 !important; color: #ffffff !important; border: 1px solid #000000 !important; border-radius: 0px !important; }
+body.theme-win31 .cart-overview span { color: #ffffff !important; }
+body.theme-win31 #detail-layer { background: #ffffff !important; border: 3px solid #000080 !important; color: #000000 !important; }
+body.theme-win31 #detailContent h2, body.theme-win31 #detailContent h3, body.theme-win31 #detailContent p { color: #000000 !important; text-shadow: none !important; }
+
+/* --- WINDOWS XP THEME --- */
+body.theme-winxp { background: #245dd7 !important; color: #000000 !important; }
+body.theme-winxp .glass { background: #ffffff !important; border: 1px solid #7f9db9 !important; border-radius: 4px !important; color: #000000 !important; }
+body.theme-winxp .navbar { background: linear-gradient(to bottom, #0058e6 0%, #247df7 100%) !important; border-bottom: 2px solid #0046b8 !important; border-radius: 0px !important; }
+body.theme-winxp .nav-logo { color: #ffffff !important; }
+body.theme-winxp .nav-links a, body.theme-winxp button, body.theme-winxp .btn-back { background: linear-gradient(to bottom, #ffffff 0%, #ece9d8 100%) !important; color: #000000 !important; border: 1px solid #7f9db9 !important; border-radius: 3px !important; box-shadow: none !important; }
+body.theme-winxp .nav-links a:hover, body.theme-winxp button:hover { background: #f1efe2 !important; border-color: #0a246a !important; }
+body.theme-winxp #taskbar { background: linear-gradient(to bottom, #245dd7 0%, #0046b8 100%) !important; border-top: 2px solid #245dd7 !important; }
+body.theme-winxp .item { background: #fbfbf9 !important; border: 1px solid #d6d3ce !important; border-radius: 4px !important; }
+body.theme-winxp .cart-overview { background: linear-gradient(to bottom, #44c644 0%, #228b22 100%) !important; border: 1px solid #1e631e !important; border-radius: 4px !important; }
+body.theme-winxp #detail-layer { background: #ffffff !important; border: 3px solid #0058e6 !important; border-radius: 5px 5px 0 0 !important; color: #000000 !important; }
+body.theme-winxp #detailContent h2, body.theme-winxp #detailContent h3, body.theme-winxp #detailContent p { color: #000000 !important; text-shadow: none !important; }
+
+/* --- WINDOWS 8 THEME --- */
+body.theme-win8 { background: #0078d7 !important; color: #ffffff !important; }
+body.theme-win8 .glass { background: #ffffff !important; border: none !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win8 .navbar { background: #1f1f1f !important; border-radius: 0px !important; }
+body.theme-win8 .nav-logo { color: #ffffff !important; }
+body.theme-win8 .nav-links a, body.theme-win8 button, body.theme-win8 .btn-back { background: #cdcdcd !important; color: #000000 !important; border: none !important; border-radius: 0px !important; box-shadow: none !important; }
+body.theme-win8 .nav-links a:hover, body.theme-win8 button:hover { background: #b8b8b8 !important; }
+body.theme-win8 #taskbar { background: #1c1c1c !important; border-top: none !important; }
+body.theme-win8 .item { background: #e6e6e6 !important; border: none !important; border-radius: 0px !important; }
+body.theme-win8 .cart-overview { background: #2672ec !important; border: none !important; border-radius: 0px !important; }
+body.theme-win8 #detail-layer { background: #ffffff !important; border: none !important; border-radius: 0px !important; color: #000000 !important; }
+body.theme-win8 #detailContent h2, body.theme-win8 #detailContent h3, body.theme-win8 #detailContent p { color: #000000 !important; text-shadow: none !important; }
+
+/* --- WINDOWS 10 THEME --- */
+body.theme-win10 { background: #101010 !important; color: #ffffff !important; }
+body.theme-win10 .glass { background: #1f1f1f !important; border: 1px solid #333333 !important; border-radius: 0px !important; color: #ffffff !important; }
+body.theme-win10 .navbar { background: #000000 !important; border-bottom: 1px solid #222222 !important; border-radius: 0px !important; }
+body.theme-win10 .nav-logo { color: #ffffff !important; }
+body.theme-win10 .nav-links a, body.theme-win10 button, body.theme-win10 .btn-back { background: #333333 !important; color: #ffffff !important; border: 1px solid #555555 !important; border-radius: 0px !important; box-shadow: none !important; }
+body.theme-win10 .nav-links a:hover, body.theme-win10 button:hover { background: #0078d7 !important; border-color: #0078d7 !important; }
+body.theme-win10 #taskbar { background: #0a0a0a !important; border-top: 1px solid #222222 !important; }
+body.theme-win10 .item { background: #2a2a2a !important; border: 1px solid #3a3a3a !important; border-radius: 0px !important; color: #ffffff !important; }
+body.theme-win10 .cart-overview { background: #0078d7 !important; border: none !important; border-radius: 0px !important; }
+body.theme-win10 #detail-layer { background: #1f1f1f !important; border: 1px solid #0078d7 !important; color: #ffffff !important; }
+body.theme-win10 #detailContent h2, body.theme-win10 #detailContent h3, body.theme-win10 #detailContent p { color: #ffffff !important; text-shadow: none !important; }
+body.theme-win10 h4, body.theme-win10 p, body.theme-win10 h2 { color: #ffffff !important; }
+
+/* --- WINDOWS 11 THEME --- */
+body.theme-win11 { background: #202020 !important; color: #ffffff !important; }
+body.theme-win11 .glass { background: rgba(30, 30, 30, 0.95) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 8px !important; color: #ffffff !important; }
+body.theme-win11 .navbar { background: #1c1c1c !important; border-bottom: 1px solid #2b2b2b !important; border-radius: 0px !important; }
+body.theme-win11 .nav-logo { color: #ffffff !important; }
+body.theme-win11 .nav-links a, body.theme-win11 button, body.theme-win11 .btn-back { background: rgba(255, 255, 255, 0.06) !important; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 6px !important; box-shadow: none !important; }
+body.theme-win11 .nav-links a:hover, body.theme-win11 button:hover { background: rgba(255, 255, 255, 0.1) !important; }
+body.theme-win11 #taskbar { background: #1c1c1c !important; border-top: 1px solid #2b2b2b !important; }
+body.theme-win11 .item { background: rgba(45, 45, 45, 0.7) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; border-radius: 8px !important; color: #ffffff !important; }
+body.theme-win11 .cart-overview { background: #60cdff !important; color: #000000 !important; border: none !important; border-radius: 6px !important; }
+body.theme-win11 .cart-overview span, body.theme-win11 .cart-overview id { color: #000000 !important; }
+body.theme-win11 #detail-layer { background: #2d2d2d !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; border-radius: 8px !important; color: #ffffff !important; }
+body.theme-win11 #detailContent h2, body.theme-win11 #detailContent h3, body.theme-win11 #detailContent p { color: #ffffff !important; text-shadow: none !important; }
+body.theme-win11 h4, body.theme-win11 p, body.theme-win11 h2 { color: #ffffff !important; }
