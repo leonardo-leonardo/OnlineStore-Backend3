@@ -167,24 +167,22 @@ function updateQty(index, offset) {
     updateCartTotals();
 }
 
-function removeItem(index) {
-    cart.splice(index, 1);
-    updateCartTotals();
-}
-
 // ================= PERFORMANCE CONFIGURATION CONFIG ENGINE =================
 function applyTransparencySettings() {
     const toggle = document.getElementById('transparencyToggle');
     const statusDisplay = document.getElementById('statusDisplay');
+    const settingThemeTitle = document.getElementById('settingThemeTitle');
     
     if (localStorage.getItem('aeroTransparency') === 'disabled') {
         if (toggle) toggle.checked = false;
         document.body.classList.add('disable-transparency');
         if (statusDisplay) statusDisplay.textContent = 'Theme Mode: Aero Basic';
+        if (settingThemeTitle) settingThemeTitle.textContent = 'Theme Mode: Aero Basic';
     } else {
         if (toggle) toggle.checked = true;
         document.body.classList.remove('disable-transparency');
         if (statusDisplay) statusDisplay.textContent = 'Theme Mode: Aero';
+        if (settingThemeTitle) settingThemeTitle.textContent = 'Theme Mode: Aero';
     }
 }
 
@@ -215,6 +213,11 @@ function updateCartTotals() {
         document.getElementById("paymentRule").innerText = total >= 500 ? "Cash Before Delivery" : "Cash Only";
     }
     localStorage.setItem("aero_cart", JSON.stringify(cart));
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartTotals();
 }
 
 // ================= AUTHENTICATION CORES =================
