@@ -72,7 +72,7 @@ body {
     padding: 0;
 }
 
-/* WINDOWS 7 INTERACTIVE AERO NAV LINKS & BUTTONS - DEEPER VIBRANT AERO GLOW MATRIX */
+/* WINDOWS 7 INTERACTIVE AERO NAV LINKS & BUTTONS */
 .nav-links a, .btn-back {
     text-decoration: none;
     color: #000000 !important;
@@ -102,7 +102,6 @@ body {
     transform: translateY(0);
 }
 
-/* HIGHLY IMMERSION AERO AURORA GLOW FOR REGISTER */
 .btn-register { 
     background: linear-gradient(to bottom, rgba(0, 220, 255, 0.8) 0%, rgba(0, 190, 240, 0.6) 50%, rgba(0, 170, 230, 0.55) 51%, rgba(0, 220, 255, 0.7) 100%) !important;
     border: 1px solid rgba(0, 230, 255, 0.75) !important;
@@ -114,7 +113,6 @@ body {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 32px rgba(0, 220, 255, 1), inset 0 0 12px rgba(255, 255, 255, 0.4) !important;
 }
 
-/* HIGHLY IMMERSION AERO AURORA GLOW FOR LOGOUT */
 .btn-logout { 
     background: linear-gradient(to bottom, rgba(255, 100, 100, 0.8) 0%, rgba(240, 80, 80, 0.6) 50%, rgba(225, 60, 60, 0.55) 51%, rgba(255, 100, 100, 0.7) 100%) !important;
     border: 1px solid rgba(255, 110, 110, 0.75) !important;
@@ -161,7 +159,7 @@ select { padding: 10px; border-radius: 8px; border: none; background: white; }
 .switch-form-text { margin-top: 15px; font-size: 0.9em; }
 .switch-form-text a { color: #1a4c9c; font-weight: bold; text-decoration: underline; cursor: pointer; }
 
-/* MAIN CALL TO ACTION / ADD TO CART BUTTONS - RICH NEON RADIANCE */
+/* MAIN CALL TO ACTION / ADD TO CART BUTTONS */
 button, .btn-checkout {
     padding: 10px 20px;
     border-radius: 6px;
@@ -201,7 +199,7 @@ button:active, .btn-checkout:active {
 .qty-btn { width: 28px; height: 28px; padding: 0 !important; border-radius: 50% !important; font-size: 16px; display: flex; align-items: center; justify-content: center; }
 .qty-val { font-weight: bold; font-size: 1.1em; width: 25px; text-align: center; }
 
-/* MATCHING SLATE AERO TASKBAR WITH MAXIMUM TRANSPARENCY */
+/* SLATE AERO TASKBAR WITH MAXIMUM TRANSPARENCY */
 #taskbar {
     position: fixed;
     bottom: 0;
@@ -231,7 +229,7 @@ button:active, .btn-checkout:active {
 
 .taskbar-left, .taskbar-right { display: flex; align-items: center; gap: 15px; }
 
-/* HIGHLY VISIBLE CART BUTTON OVERRIDE */
+/* CART OVERVIEW BUTTON */
 .cart-overview {
     background: linear-gradient(rgba(0, 210, 255, 0.25), rgba(26, 76, 156, 0.35)) !important;
     border: 1.5px solid rgba(0, 210, 255, 0.6) !important;
@@ -259,7 +257,7 @@ button:active, .btn-checkout:active {
 .start-btn:hover { transform: scale(1.1); }
 .auth-msg { margin-top: 10px; font-weight: bold; }
 
-/* ENHANCED LARGER FLYING ORB MATRIX */
+/* FLYING ORB MATRIX */
 .flying-orb {
     position: fixed;
     width: 45px;  
@@ -286,16 +284,8 @@ button:active, .btn-checkout:active {
 }
 
 @keyframes aeroOpen {
-    0% {
-        opacity: 0;
-        transform: scale(0.85) perspective(800px) rotateX(-10deg);
-        filter: blur(4px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) perspective(800px) rotateX(0deg);
-        filter: blur(0);
-    }
+    0% { opacity: 0; transform: scale(0.85) perspective(800px) rotateX(-10deg); filter: blur(4px); }
+    100% { opacity: 1; transform: scale(1) perspective(800px) rotateX(0deg); filter: blur(0); }
 }
 
 /* SYSTEM PROCESSING WINDOWS OVERLAY */
@@ -335,7 +325,7 @@ button:active, .btn-checkout:active {
 @keyframes sectionFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==========================================================================
-   AERO GLASS PERFORMANCE ENGINE LAYOUTS
+   AERO BASIC (OPAQUE THEME PERFORMANCE LAYOUT CHANGES)
    ========================================================================== */
 body.disable-transparency {
     background: #1a4c9c;
@@ -359,8 +349,14 @@ body.disable-transparency .item {
     background: rgb(245, 245, 245) !important;
     border-color: rgba(0, 0, 0, 0.15) !important;
 }
+body.disable-transparency .setting-info h4 {
+    color: #000000 !important;
+}
+body.disable-transparency .setting-info p {
+    color: #333333 !important;
+}
 
-/* WINDOWS 7 CONTROL ENGINE SLIDER SWITCHES */
+/* WINDOWS 7 ENGINE SWITCH CONTROL SLIDERS */
 .switch input:checked + .slider {
     background: linear-gradient(to bottom, #a1e0a1, #cef0ce) !important;
     border-color: #3b7a3b !important;
