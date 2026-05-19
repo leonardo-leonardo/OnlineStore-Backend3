@@ -349,7 +349,7 @@ body.disable-transparency .item {
     background: rgb(245, 245, 245) !important;
     border-color: rgba(0, 0, 0, 0.15) !important;
 }
-body.disable-transparency .setting-info h4 {
+body.disable-transparency #settingThemeTitle {
     color: #000000 !important;
 }
 body.disable-transparency .setting-info p {
