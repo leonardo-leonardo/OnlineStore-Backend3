@@ -172,7 +172,7 @@ function removeItem(index) {
     updateCartTotals();
 }
 
-// ================= PERFORMANCE ENGINE LOGIC =================
+// ================= PERFORMANCE CONFIGURATION CONFIG ENGINE =================
 function applyTransparencySettings() {
     const toggle = document.getElementById('transparencyToggle');
     const statusDisplay = document.getElementById('statusDisplay');
@@ -217,7 +217,7 @@ function updateCartTotals() {
     localStorage.setItem("aero_cart", JSON.stringify(cart));
 }
 
-// ================= PRODUCTION AUTHENTICATION ENGINE =================
+// ================= AUTHENTICATION CORES =================
 function handleRegister(e) {
     e.preventDefault();
     const user = document.getElementById("reg-user").value.trim();
@@ -275,7 +275,6 @@ function logout() {
     showSection('store-layer');
 }
 
-// ================= ANIMATED CHECKOUT INTEGRATION =================
 function syncAuthState() {
     const guestsLinks = document.querySelectorAll(".auth-guest-only");
     const userLinks = document.querySelectorAll(".auth-user-only");
@@ -295,6 +294,7 @@ function syncAuthState() {
 
 function showAuthMsg(el, text, color) { el.innerText = text; el.style.color = color; }
 
+// ================= CHECKOUT INTEGRATION =================
 function checkout() {
     if (cart.length === 0) return alert("Cart is empty!🥲");
     
