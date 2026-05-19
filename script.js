@@ -180,11 +180,11 @@ function applyTransparencySettings() {
     if (localStorage.getItem('aeroTransparency') === 'disabled') {
         if (toggle) toggle.checked = false;
         document.body.classList.add('disable-transparency');
-        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Performance (Opaque)';
+        if (statusDisplay) statusDisplay.textContent = 'Theme Mode: Aero Basic';
     } else {
         if (toggle) toggle.checked = true;
         document.body.classList.remove('disable-transparency');
-        if (statusDisplay) statusDisplay.textContent = 'Aero Mode: Enabled';
+        if (statusDisplay) statusDisplay.textContent = 'Theme Mode: Aero';
     }
 }
 
@@ -275,6 +275,7 @@ function logout() {
     showSection('store-layer');
 }
 
+// ================= ANIMATED CHECKOUT INTEGRATION =================
 function syncAuthState() {
     const guestsLinks = document.querySelectorAll(".auth-guest-only");
     const userLinks = document.querySelectorAll(".auth-user-only");
@@ -294,7 +295,6 @@ function syncAuthState() {
 
 function showAuthMsg(el, text, color) { el.innerText = text; el.style.color = color; }
 
-// ================= ANIMATED CHECKOUT INTEGRATION =================
 function checkout() {
     if (cart.length === 0) return alert("Cart is empty!🥲");
     
