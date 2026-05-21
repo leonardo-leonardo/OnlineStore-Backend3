@@ -235,7 +235,7 @@ function removeItem(index) {
     updateCartTotals();
 }
 
-// ================= AUTHENTICATION CORES =================
+// ================= AUTHENTICATION CORES (FIREBASE REALTIME UPGRADE) =================
 function handleRegister(e) {
     e.preventDefault();
     const user = document.getElementById("reg-user").value.trim();
@@ -247,20 +247,30 @@ function handleRegister(e) {
     if (pass.length < 6) { return showAuthMsg(msg, "Password must be at least 6 characters!", "red"); }
     if (pass !== confirm) { return showAuthMsg(msg, "Passwords do not match!", "red"); }
 
-    let users = JSON.parse(localStorage.getItem("aero_users")) || [];
-    if (users.find(u => u.username.toLowerCase() === user.toLowerCase())) {
-        return showAuthMsg(msg, "Username already taken!", "red");
-    }
+    // Check Firebase direct path to see if username already exists
+    database.ref("users/" + user).once("value", (snapshot) => {
+        if (snapshot.exists()) {
+            return showAuthMsg(msg, "Username already taken!", "red");
+        }
 
-    users.push({ username: user, email: email, password: btoa(pass) }); 
-    localStorage.setItem("aero_users", JSON.stringify(users));
-    
-    showAuthMsg(msg, "Registration Successful! Redirecting...", "green");
-    setTimeout(() => {
-        document.getElementById("real-register-form").reset();
-        showSection('login-page');
-        msg.innerText = "";
-    }, 1500);
+        // Write new record directly to the Cloud database node
+        database.ref("users/" + user).set({
+            username: user,
+            email: email,
+            password: btoa(pass) // Retaining original baseline encoding obfuscation
+        }, (error) => {
+            if (error) {
+                showAuthMsg(msg, "Database write failure!", "red");
+            } else {
+                showAuthMsg(msg, "Registration Successful! Redirecting...", "green");
+                setTimeout(() => {
+                    document.getElementById("real-register-form").reset();
+                    showSection('login-page');
+                    msg.innerText = "";
+                }, 1500);
+            }
+        });
+    });
 }
 
 function handleLogin(e) {
@@ -269,21 +279,25 @@ function handleLogin(e) {
     const pass = document.getElementById("login-pass").value;
     const msg = document.getElementById("loginMessage");
 
-    let users = JSON.parse(localStorage.getItem("aero_users")) || [];
-    const foundUser = users.find(u => u.username.toLowerCase() === user.toLowerCase() && u.password === btoa(pass));
+    // Fetch the account directly from the Firebase users node path
+    database.ref("users/" + user).once("value", (snapshot) => {
+        const foundUser = snapshot.val();
 
-    if (!foundUser) { return showAuthMsg(msg, "Invalid username or password!", "red"); }
-
-    currentUser = foundUser.username;
-    localStorage.setItem("aero_logged_in", currentUser);
-    
-    showAuthMsg(msg, "Login successful! Welcome back.", "green");
-    setTimeout(() => {
-        document.getElementById("real-login-form").reset();
-        syncAuthState();
-        showSection('store-layer');
-        msg.innerText = "";
-    }, 1200);
+        if (foundUser && foundUser.password === btoa(pass)) {
+            currentUser = foundUser.username;
+            localStorage.setItem("aero_logged_in", currentUser); // Keep cookie state to maintain view layer persistence on refresh
+            
+            showAuthMsg(msg, "Login successful! Welcome back.", "green");
+            setTimeout(() => {
+                document.getElementById("real-login-form").reset();
+                syncAuthState();
+                showSection('store-layer');
+                msg.innerText = "";
+            }, 1200);
+        } else {
+            return showAuthMsg(msg, "Invalid username or password!", "red");
+        }
+    });
 }
 
 // ================= SIGN-OUT OPERATION =================
