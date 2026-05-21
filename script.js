@@ -1,3 +1,18 @@
+// ================= FIREBASE DATABASE INITIALIZATION =================
+const firebaseConfig = {
+    apiKey: "AIzaSyAvBEyvpAt9_pM9Q6xkb8j8GCBEwrjwwiI",
+    authDomain: "aero-glass-store.firebaseapp.com",
+    databaseURL: "https://aero-glass-store-default-rtdb.firebaseio.com/",
+    projectId: "aero-glass-store",
+    storageBucket: "aero-glass-store.firebasestorage.app",
+    messagingSenderId: "61127659322",
+    appId: "1:61127659322:web:2d9fcd40d1fcf318b5ca03"
+};
+
+// Initialize Firebase using compatibility layer
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
 // ================= EMAILJS INIT =================
 (function () {
     emailjs.init("w-EA-SaRhXquiCgRI");
@@ -271,6 +286,7 @@ function handleLogin(e) {
     }, 1200);
 }
 
+// ================= SIGN-OUT OPERATION =================
 function logout() {
     localStorage.removeItem("aero_logged_in");
     currentUser = null;
