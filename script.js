@@ -343,13 +343,14 @@ function checkout() {
     loaderText.innerText = "Encrypting Pipeline data...";
     overlay.style.display = "flex";
 
-    const timestamp = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+    // Use a strict ISO format so that sorting logic can safely convert it back to Date objects later
+    const timestampISO = new Date().toISOString();
 
     const orderData = {
         customer: clientName,
         items: cart,
         totalAmount: total,
-        date: timestamp
+        date: timestampISO
     };
 
     // Push structured purchase logs into global cloud architecture node
@@ -390,19 +391,75 @@ function loadOrderHistory() {
 
     database.ref("orders").once("value", (snapshot) => {
         container.innerHTML = "";
-        let hasOrders = false;
+        
+        let orderList = [];
 
+        // 1. Gather and structuralize raw matching records from database snapshot
         snapshot.forEach((childSnapshot) => {
             const order = childSnapshot.val();
 
-            // Admins (Leonardo) see everything; standard users see only matching custom account matches
             const isOwner = currentUser && currentUser.toLowerCase() === "leonardo";
             const isCurrentCustomer = order.customer && currentUser && order.customer.toLowerCase() === currentUser.toLowerCase();
             const isGuestMatch = !currentUser && order.customer && order.customer.toLowerCase().includes("guest");
 
             if (isOwner || isCurrentCustomer || isGuestMatch) {
-                hasOrders = true;
+                orderList.push(order);
+            }
+        });
 
+        if (orderList.length === 0) {
+            container.innerHTML = `<p style="color:#000000; font-style: italic;">No verified cloud purchase history records match your profile context.</p>`;
+            return;
+        }
+
+        // 2. SORTING ENGINE: Sort by date timestamp descending (Newest orders first on top)
+        orderList.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // 3. TIMELINE SEPARATION LOGIC
+        const now = new Date();
+        const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+        const startOfYesterday = startOfToday - (24 * 60 * 60 * 1000);
+        const startOfThisWeek = startOfToday - (now.getDay() * 24 * 60 * 60 * 1000);
+        const startOfThisMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+
+        let groups = {
+            "Today": [],
+            "Yesterday": [],
+            "This Week": [],
+            "This Month": [],
+            "Older": []
+        };
+
+        orderList.forEach(order => {
+            const orderTime = new Date(order.date).getTime();
+            if (orderTime >= startOfToday) {
+                groups["Today"].push(order);
+            } else if (orderTime >= startOfYesterday) {
+                groups["Yesterday"].push(order);
+            } else if (orderTime >= startOfThisWeek) {
+                groups["This Week"].push(order);
+            } else if (orderTime >= startOfThisMonth) {
+                groups["This Month"].push(order);
+            } else {
+                groups["Older"].push(order);
+            }
+        });
+
+        // 4. RENDER TIMELINE GROUPS
+        const timelinesOrder = ["Today", "Yesterday", "This Week", "This Month", "Older"];
+        
+        timelinesOrder.forEach(categoryName => {
+            const groupOrders = groups[categoryName];
+            if (groupOrders.length === 0) return; // Skip showing category headers with no items
+
+            // Append Group Section Timeline Title Bar
+            container.innerHTML += `
+                <div style="margin-top: 15px; margin-bottom: 5px; padding-left: 5px; border-left: 4px solid #0055cc;">
+                    <h3 style="margin: 0; color: #111; font-size: 1.1em; font-weight: bold; font-family: sans-serif;">🕒 ${categoryName}</h3>
+                </div>`;
+
+            // Append each individual block underneath the current header timeline category
+            groupOrders.forEach(order => {
                 let itemsHTML = "";
                 if (Array.isArray(order.items)) {
                     order.items.forEach(i => {
@@ -410,14 +467,17 @@ function loadOrderHistory() {
                     });
                 }
 
-                // Safely convert items to a URL-safe string that supports emojis perfectly
                 const safeItemsJson = encodeURIComponent(JSON.stringify(order.items));
+                
+                // Format display timestamp local style conversion fallback string logic
+                const formattedDisplayDate = new Date(order.date).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+                const isOwner = currentUser && currentUser.toLowerCase() === "leonardo";
 
                 container.innerHTML += `
-                    <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000; margin-top: 10px;">
+                    <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000; margin-bottom: 10px;">
                         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
                             <strong>👤 Customer: ${order.customer} ${isOwner ? "<span style='color:#0055cc; font-size:0.85em;'>(Admin View)</span>" : ""}</strong>
-                            <span style="font-size: 0.85em; color: #444;">🕒 ${order.date}</span>
+                            <span style="font-size: 0.85em; color: #444;">🕒 ${formattedDisplayDate}</span>
                         </div>
                         <ul style="margin: 5px 0 10px 0; padding: 0; list-style-type: square;">
                             ${itemsHTML}
@@ -427,12 +487,8 @@ function loadOrderHistory() {
                             <button onclick="reorderWithDiscount('${safeItemsJson}')" style="background: linear-gradient(#b2cceb, #ffffff); border: 1px solid #707070; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.85em; color: #000; box-shadow: 0 1px 2px rgba(0,0,0,0.2);">🔄 Order Again (20% OFF)</button>
                         </div>
                     </div>`;
-            }
+            });
         });
-
-        if (!hasOrders) {
-            container.innerHTML = `<p style="color:#000000; font-style: italic;">No verified cloud purchase history records match your profile context.</p>`;
-        }
     });
 }
 
