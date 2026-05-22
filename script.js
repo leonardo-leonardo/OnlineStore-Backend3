@@ -410,11 +410,11 @@ function loadOrderHistory() {
                     });
                 }
 
-                // Stringify the items array safely so it can be passed into the button function
-                const safeItemsJson = btoa(JSON.stringify(order.items));
+                // Safely convert items to a URL-safe string that supports emojis perfectly
+                const safeItemsJson = encodeURIComponent(JSON.stringify(order.items));
 
                 container.innerHTML += `
-                    <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000;">
+                    <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000; margin-top: 10px;">
                         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
                             <strong>👤 Customer: ${order.customer} ${isOwner ? "<span style='color:#0055cc; font-size:0.85em;'>(Admin View)</span>" : ""}</strong>
                             <span style="font-size: 0.85em; color: #444;">🕒 ${order.date}</span>
@@ -439,8 +439,8 @@ function loadOrderHistory() {
 // ================= REORDER INTERACTION PIPELINE ENGINE =================
 function reorderWithDiscount(encodedItems) {
     try {
-        // Decode the data payload back into a structured array
-        const pastItems = JSON.parse(atob(encodedItems));
+        // Decode the URL-safe data back into a structured array
+        const pastItems = JSON.parse(decodeURIComponent(encodedItems));
         
         if (!pastItems || pastItems.length === 0) return;
 
