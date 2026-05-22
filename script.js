@@ -87,6 +87,11 @@ function showSection(sectionId) {
     } else {
         document.getElementById('itemsContainer').style.display = 'none';
     }
+
+    if (sectionId === 'history-page') {
+        loadOrderHistory();
+    }
+
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -247,17 +252,15 @@ function handleRegister(e) {
     if (pass.length < 6) { return showAuthMsg(msg, "Password must be at least 6 characters!", "red"); }
     if (pass !== confirm) { return showAuthMsg(msg, "Passwords do not match!", "red"); }
 
-    // Check Firebase direct path to see if username already exists
     database.ref("users/" + user).once("value", (snapshot) => {
         if (snapshot.exists()) {
             return showAuthMsg(msg, "Username already taken!", "red");
         }
 
-        // Write new record directly to the Cloud database node
         database.ref("users/" + user).set({
             username: user,
             email: email,
-            password: btoa(pass) // Retaining original baseline encoding obfuscation
+            password: btoa(pass)
         }, (error) => {
             if (error) {
                 showAuthMsg(msg, "Database write failure!", "red");
@@ -279,13 +282,12 @@ function handleLogin(e) {
     const pass = document.getElementById("login-pass").value;
     const msg = document.getElementById("loginMessage");
 
-    // Fetch the account directly from the Firebase users node path
     database.ref("users/" + user).once("value", (snapshot) => {
         const foundUser = snapshot.val();
 
         if (foundUser && foundUser.password === btoa(pass)) {
             currentUser = foundUser.username;
-            localStorage.setItem("aero_logged_in", currentUser); // Keep cookie state to maintain view layer persistence on refresh
+            localStorage.setItem("aero_logged_in", currentUser);
             
             showAuthMsg(msg, "Login successful! Welcome back.", "green");
             setTimeout(() => {
@@ -300,7 +302,6 @@ function handleLogin(e) {
     });
 }
 
-// ================= SIGN-OUT OPERATION =================
 function logout() {
     localStorage.removeItem("aero_logged_in");
     currentUser = null;
@@ -327,7 +328,7 @@ function syncAuthState() {
 
 function showAuthMsg(el, text, color) { el.innerText = text; el.style.color = color; }
 
-// ================= CHECKOUT INTEGRATION =================
+// ================= CHECKOUT INTEGRATION WITH CLOUD PERSISTENCE =================
 function checkout() {
     if (cart.length === 0) return alert("Cart is empty!🥲");
     
@@ -341,20 +342,33 @@ function checkout() {
     loaderText.innerText = "Encrypting Pipeline data...";
     overlay.style.display = "flex";
 
-    setTimeout(() => {
-        loaderText.innerText = "Transmitting to EmailJS Gateways...";
-        
-        emailjs.send("service_nb7uhuv", "template_2upy0gm", {
-            name: clientName,
-            product: orderDetails,
-            price: total
+    const timestamp = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+
+    const orderData = {
+        customer: clientName,
+        items: cart,
+        totalAmount: total,
+        date: timestamp,
+        status: "Pending"
+    };
+
+    // Push structured purchase logs into global cloud architecture node
+    database.ref("orders").push(orderData)
+        .then(() => {
+            loaderText.innerText = "Transmitting to EmailJS Gateways...";
+            
+            return emailjs.send("service_nb7uhuv", "template_2upy0gm", {
+                name: clientName,
+                product: orderDetails,
+                price: total
+            });
         })
         .then(() => {
             loaderText.innerHTML = "<span style='color: #00ff88;'>✅ Order Dispatched!</span>";
             
             setTimeout(() => {
                 overlay.style.display = "none";
-                alert("✅ Order sent successfully!😄");
+                alert("✅ Order sent and saved successfully!😄");
                 cart = [];
                 updateCartTotals();
                 showSection('store-layer');
@@ -362,9 +376,61 @@ function checkout() {
         })
         .catch((err) => {
             overlay.style.display = "none";
-            alert("❌ Failed to complete transmission sequence.");
+            console.error("Order error:", err);
+            alert("❌ Failed to complete complete history sync sequence.");
         });
-    }, 1200);
+}
+
+// ================= CLOUD ORDER HISTORY PARSER PORTAL =================
+function loadOrderHistory() {
+    const container = document.getElementById("historyLogsContainer");
+    if (!container) return;
+
+    container.innerHTML = `<p style="color:#000;">Syncing cloud receipt indexes...</p>`;
+
+    database.ref("orders").once("value", (snapshot) => {
+        container.innerHTML = "";
+        let hasOrders = false;
+
+        snapshot.forEach((childSnapshot) => {
+            const order = childSnapshot.val();
+
+            // Admins (Leonardo) see everything; standard users see only matching custom account matches
+            const isOwner = currentUser && currentUser.toLowerCase() === "leonardo";
+            const isCurrentCustomer = order.customer && currentUser && order.customer.toLowerCase() === currentUser.toLowerCase();
+            const isGuestMatch = !currentUser && order.customer && order.customer.toLowerCase().includes("guest");
+
+            if (isOwner || isCurrentCustomer || isGuestMatch) {
+                hasOrders = true;
+
+                let itemsHTML = "";
+                if (Array.isArray(order.items)) {
+                    order.items.forEach(i => {
+                        itemsHTML += `<li style="margin-left: 15px; font-size: 0.9em; color:#222;">${i.name} (×${i.qty}) - NT$${i.price * i.qty}</li>`;
+                    });
+                }
+
+                container.innerHTML += `
+                    <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000;">
+                        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
+                            <strong>👤 Customer: ${order.customer} ${isOwner ? "<span style='color:#0055cc; font-size:0.85em;'>(Admin View)</span>" : ""}</strong>
+                            <span style="font-size: 0.85em; color: #444;">🕒 ${order.date}</span>
+                        </div>
+                        <ul style="margin: 5px 0 10px 0; padding: 0; list-style-type: square;">
+                            ${itemsHTML}
+                        </ul>
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; margin-top: 5px;">
+                            <span>Total paid: <span style="color:#005500;">NT$${order.totalAmount}</span></span>
+                            <span style="background: #d9edf7; color: #31708f; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; border: 1px solid #bce8f1;">${order.status || "Pending"}</span>
+                        </div>
+                    </div>`;
+            }
+        });
+
+        if (!hasOrders) {
+            container.innerHTML = `<p style="color:#000000; font-style: italic;">No verified cloud purchase history records match your profile context.</p>`;
+        }
+    });
 }
 
 // ================= INITIALIZATION =================
