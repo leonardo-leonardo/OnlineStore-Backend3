@@ -27,6 +27,7 @@
     <ul class="nav-links">
         <li><a href="#" onclick="showSection('store-layer')">Home</a></li>
         <li><a href="#" onclick="showSection('cart-page')">Detailed Cart</a></li>
+        <li><a href="#" onclick="showSection('history-page')">Order History</a></li>
         <li><a href="#" onclick="showSection('settings-page')">Settings</a></li>
         <li class="auth-guest-only"><a href="#" onclick="showSection('login-page')">Login</a></li>
         <li class="auth-guest-only"><a href="#" onclick="showSection('register-page')" class="btn-register">Register</a></li>
@@ -110,6 +111,16 @@
             <p><strong>Total Amount: NT$<span id="detailedTotal">0</span></strong></p>
             <p><strong>Payment terms: <span id="paymentRule">Cash Only</span></strong></p>
             <button onclick="checkout()" class="checkout-btn">Checkout (Send Email)</button>
+        </div>
+    </div>
+</div>
+
+<div id="history-page" class="page-section" style="display: none;">
+    <div class="glass" style="margin: 20px; padding: 20px;">
+        <h2>📜 Live Order History Receipts</h2>
+        <p style="font-size: 0.9em; color: #111; margin-bottom: 15px;">Displays matching cloud network transaction entries linked to your current authentication identity status level.</p>
+        <div id="historyLogsContainer" style="display: flex; flex-direction: column; gap: 15px;">
+            <p style="color: #222;">Awaiting identity synchronization initialization data payload...</p>
         </div>
     </div>
 </div>
