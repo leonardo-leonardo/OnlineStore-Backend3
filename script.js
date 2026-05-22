@@ -309,6 +309,7 @@ function logout() {
     showSection('store-layer');
 }
 
+// ================= AUTHENTICATION CORES SYNC =================
 function syncAuthState() {
     const guestsLinks = document.querySelectorAll(".auth-guest-only");
     const userLinks = document.querySelectorAll(".auth-user-only");
@@ -348,8 +349,7 @@ function checkout() {
         customer: clientName,
         items: cart,
         totalAmount: total,
-        date: timestamp,
-        status: "Pending"
+        date: timestamp
     };
 
     // Push structured purchase logs into global cloud architecture node
@@ -410,6 +410,9 @@ function loadOrderHistory() {
                     });
                 }
 
+                // Stringify the items array safely so it can be passed into the button function
+                const safeItemsJson = btoa(JSON.stringify(order.items));
+
                 container.innerHTML += `
                     <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); padding: 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color:#000;">
                         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 5px;">
@@ -420,8 +423,8 @@ function loadOrderHistory() {
                             ${itemsHTML}
                         </ul>
                         <div style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; margin-top: 5px;">
-                            <span>Total paid: <span style="color:#005500;">NT$${order.totalAmount}</span></span>
-                            <span style="background: #d9edf7; color: #31708f; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; border: 1px solid #bce8f1;">${order.status || "Pending"}</span>
+                            <span>Original Total: <span style="color:#005500;">NT$${order.totalAmount}</span></span>
+                            <button onclick="reorderWithDiscount('${safeItemsJson}')" style="background: linear-gradient(#b2cceb, #ffffff); border: 1px solid #707070; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.85em; color: #000; box-shadow: 0 1px 2px rgba(0,0,0,0.2);">🔄 Order Again (20% OFF)</button>
                         </div>
                     </div>`;
             }
@@ -431,6 +434,47 @@ function loadOrderHistory() {
             container.innerHTML = `<p style="color:#000000; font-style: italic;">No verified cloud purchase history records match your profile context.</p>`;
         }
     });
+}
+
+// ================= REORDER INTERACTION PIPELINE ENGINE =================
+function reorderWithDiscount(encodedItems) {
+    try {
+        // Decode the data payload back into a structured array
+        const pastItems = JSON.parse(atob(encodedItems));
+        
+        if (!pastItems || pastItems.length === 0) return;
+
+        pastItems.forEach(pastItem => {
+            // Apply 20% discount directly to individual item calculations
+            const discountedPrice = Math.round(pastItem.price * 0.8);
+            
+            // Check if item is already present inside current checkout array session
+            const existing = cart.find(i => i.name === pastItem.name);
+            if (existing) {
+                existing.qty += pastItem.qty;
+            } else {
+                cart.push({
+                    name: pastItem.name,
+                    price: discountedPrice,
+                    qty: pastItem.qty
+                });
+            }
+        });
+
+        // Sync and refresh display engines
+        updateCartTotals();
+        
+        // Play audio feedback cue to confirm tracking load pipeline sequence
+        const sound = document.getElementById("dingSound");
+        if (sound) sound.play();
+
+        alert("🛒 Items loaded into your cart with a 20% discount applied!");
+        showSection('cart-page');
+
+    } catch (error) {
+        console.error("Reorder tracking pipeline failure:", error);
+        alert("❌ Failed to load past receipt records back into cart memory.");
+    }
 }
 
 // ================= INITIALIZATION =================
