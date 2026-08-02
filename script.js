@@ -73,7 +73,7 @@ const items = [
         name: "Professional wifi card performance tuning to disable the card's sleep states and idle power-saving features to prevent lag spikes. ",
         price: 200,
         category: "optimizing",
-        img: "",
+        img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/images/Registry%20tweak%20for%20max%20wifi%20card%20performance.png",
         desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it also uses numerous registry tweaks to disable idle power-saving features and sleep states. Since many online games only require several kb/s, so your wifi card may put itself into sleep states and enable power-saving mode itself. #I can confirm it really works on my laptop! "
     }
 ];
