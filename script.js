@@ -63,18 +63,18 @@ const items = [
         desc: "A full set of diagnostics to identify bottlenecks; this is cheaper because it only includes diagnosing."
     },
     {
-        name: "Install A Mac OS virtual machine in a Windows laptop/pc. *Note that some processors(some AMD)and graphics aren't supported. ",
+        name: "Install A Mac OS virtual machine in a Windows laptop/pc. *Note that some processors(some AMD)and graphics aren't supported.",
         price: 200,
         category: "install",
         img: "https://logos-world.net/wp-content/uploads/2023/03/Mac-Logo.png",
         desc: "Installing a Mac OS in your Windows pc, using VMware Workstation Pro. #I will also maximize the performance of the VM. *The performance may decrease if Mac doesn't support your graphics."
     }
     {
-        name: "Professional wifi card performance tuning to disable the card's sleep states and idle power-saving features to prevent lag spikes. ",
+        name: "Professional wifi card performance tuning to disable the card's sleep states and idle power-saving features to prevent lag spikes.",
         price: 200,
         category: "optimizing",
         img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/images/Registry%20tweak%20for%20max%20wifi%20card%20performance.png",
-        desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it also uses numerous registry tweaks to disable idle power-saving features and sleep states. Since many online games only require several kb/s, so your wifi card may put itself into sleep states and enable power-saving mode itself. #I can confirm it really works on my laptop! "
+        desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it also uses numerous registry tweaks to disable idle power-saving features and sleep states. Since many online games only require several kb/s, so your wifi card may put itself into sleep states and enable power-saving mode itself. #I can confirm it really works on my laptop!"
     }
 ];
 
