@@ -52,7 +52,7 @@ const items = [
         name: "Add another Operating system to your laptop/Pc",
         price: 150,
         category: "install",
-        img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/Choosing%20Opearting%20System%20Menu.jpg",
+        img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/images/Choosing%20Opearting%20System%20Menu.jpg",
         desc: "Dual-boot setup for Windows11, Windows10, Ubuntu, Tiny11 and Windows 7. System compatibility check included. #I can also install other operating systems if your hardware allows! *Unfortunately, some operating systems is unable to install because laptops/pc hardware doesn't support."
     },
     {
