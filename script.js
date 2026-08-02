@@ -39,35 +39,42 @@ const items = [
         price: 100,
         category: "optimizing",
         img: "https://iphonewired.com/wp-content/uploads/2022/11/1669772263_maxresdefault.jpg",
-        desc: "Professional cleaning of cache, windows update leftovers, files that are no longer needed to regain lost space."
+        desc: "Professional cleaning of cache, Windows update leftovers, files that are no longer needed to regain lost space."
     },
     {
         name: "Extend your laptop and Pc's battery life",
         price: 100,
         category: "optimizing",
         img: "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2021/09/battery_saver_hero_3.jpg",
-        desc: "Optimization of power plans and background processes to make your battery last longer. Details: CPU-power limit to 6~9watts and reduce GHz.          RAM-Reduce power usage by cleaning up RAM and enabling power-saving mode if acceptable.          Disk-Reduce unnecessary disk activities by stopping unnecessary services like Windows prefetch and search index.          Wi-Fi- Disable auto sample or diagnostics data that sends to Microsoft.          GPU-Use power saving mode with vendor-specific apps, disable dedicated GPU(if acceptable).          NPU-Disable it for better efficiency(If you have one)."
+        desc: "Our professional battery life extender didn't just enable the power saver plan; we include several additional tweaks such as enabling C states and core parking, disk power saving mode, switching to Optimus mode for graphics, and a lot more🔋"
     },
     {
         name: "Add another Operating system to your laptop/Pc",
         price: 150,
         category: "install",
         img: "https://raw.githubusercontent.com/leonardo-leonardo/OnlineStore-Backend3/refs/heads/main/Choosing%20Opearting%20System%20Menu.jpg",
-        desc: "Dual-boot setup for Windows11, Windows10, Ubuntu, Tiny11 and Windows 7. System compatibility check included. #I can also install other operating systems if your hardware allows! *Unfortunately, some operating systems can't install because laptops/pc hardware doesn't support."
+        desc: "Dual-boot setup for Windows11, Windows10, Ubuntu, Tiny11 and Windows 7. System compatibility check included. #I can also install other operating systems if your hardware allows! *Unfortunately, some operating systems is unable to install because laptops/pc hardware doesn't support."
     },
     {
         name: "Diagnose your laptop/Pc",
         price: 100,
         category: "diagnose",
         img: "https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2017/12/Signs-Computer-Has-Virus-Featured.jpg",
-        desc: "Full hardware and software diagnostic report to identify problems and bottlenecks."
+        desc: "A full set of diagnostics to identify bottlenecks; this is cheaper because it only includes diagnosing."
     },
     {
-        name: "Install A Mac OS in a Windows laptop/pc, with a virtual machine",
+        name: "Install A Mac OS virtual machine in a Windows laptop/pc. *Note that some processors(some AMD)and graphics aren't supported. ",
         price: 200,
         category: "install",
         img: "https://logos-world.net/wp-content/uploads/2023/03/Mac-Logo.png",
         desc: "Installing a Mac OS in your Windows pc, using VMware Workstation Pro. #I will also maximize the performance of the VM. *The performance may decrease if Mac doesn't support your graphics."
+    }
+    {
+        name: "Professional wifi card performance tuning to disable the card's sleep states and idle power-saving features to prevent lag spikes. ",
+        price: 200,
+        category: "optimizing",
+        img: "",
+        desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it uses many advanced registry tweaks to disable idle power-saving features and sleep states. #I can confirm it really works on my laptop! "
     }
 ];
 
