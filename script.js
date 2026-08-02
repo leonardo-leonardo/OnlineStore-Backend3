@@ -74,7 +74,7 @@ const items = [
         price: 200,
         category: "optimizing",
         img: "",
-        desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it uses many advanced registry tweaks to disable idle power-saving features and sleep states. #I can confirm it really works on my laptop! "
+        desc: "Wondering why your wifi is laggy🤬? This advanced tweaking not just tells you to upgrade your router; it also uses numerous registry tweaks to disable idle power-saving features and sleep states. Since many online games only require several kb/s, so your wifi card may put itself into sleep states and enable power-saving mode itself. #I can confirm it really works on my laptop! "
     }
 ];
 
