@@ -68,7 +68,7 @@ const items = [
         category: "install",
         img: "https://logos-world.net/wp-content/uploads/2023/03/Mac-Logo.png",
         desc: "Installing a Mac OS in your Windows pc, using VMware Workstation Pro. #I will also maximize the performance of the VM. *The performance may decrease if Mac doesn't support your graphics."
-    }
+    },
     {
         name: "Professional wifi card performance tuning to disable the card's sleep states and idle power-saving features to prevent lag spikes.",
         price: 200,
